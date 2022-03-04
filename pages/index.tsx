@@ -8,18 +8,32 @@ const Home: NextPage = () => {
     return (
       <ul>
         <li>
-          <Link href="/post/abc">
-            <a>Go to pages/post/[pid].js</a>
+          main page here
+        </li>
+        <hr></hr>
+        <li>
+          <Link href="/profile/wafflestudio">
+            <a>Go to wafflestudio's profile page</a>
           </Link>
         </li>
         <li>
-          <Link href="/post/abc?foo=bar">
-            <a>Also goes to pages/post/[pid].js</a>
+          <Link href="/post/1">
+            <a>Go to 1st post's page</a>
           </Link>
         </li>
         <li>
-          <Link href="/post/abc/a-comment">
-            <a>Go to pages/post/[pid]/[comment].js</a>
+          <Link href="/notification">
+            <a>Go to notification page</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/setting">
+            <a>Go to setting page</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/write">
+            <a>Write your post</a>
           </Link>
         </li>
         <li>
