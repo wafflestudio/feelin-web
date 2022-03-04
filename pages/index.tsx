@@ -17,8 +17,18 @@ const Home: NextPage = () => {
           </Link>
         </li>
         <li>
+          <Link href="/profile/flee">
+            <a>Go to Flee's profile page</a>
+          </Link>
+        </li>
+        <li>
           <Link href="/post/1">
             <a>Go to 1st post's page</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/post/2">
+            <a>Go to 2nd post's page</a>
           </Link>
         </li>
         <li>
