@@ -8,10 +8,8 @@ const Follower=()=>{
     return(
     <div>
         <p>{username}'s follower page here</p>
-        <button>
-            <Link href={"/"}>
-                <a>go back</a>
-            </Link>
+        <button onClick={()=>{router.back()}}>
+                go back
         </button>
     </div>
     )

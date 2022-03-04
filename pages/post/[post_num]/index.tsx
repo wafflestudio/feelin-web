@@ -8,11 +8,9 @@ const Post=()=>{
     return(
     <div>
         <p>post {post_num}'s page is here</p>
-        <button>
-            <Link href={"/"}>
-                <a>go back</a>
-            </Link>
-        </button>
+            <button onClick={()=>{router.back()}}>
+                go back
+            </button>
     </div>
     )
 }
