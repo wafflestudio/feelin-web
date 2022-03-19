@@ -28,7 +28,13 @@ const Login = () => {
 
   return (
     <div className={styles.wrapper}>
+      <div className={styles.logo}>
+        <span>로고</span>
+      </div>
       <form onSubmit={onSubmit}>
+        <p>
+          <b>! 비밀번호가 일치하지 않습니다.</b>
+        </p>
         <input
           className={styles.username}
           name={"username"}
@@ -72,10 +78,17 @@ const Login = () => {
         form {
           position: absolute;
           width: 100%;
-          top: 250px;
+          top: 280px;
           display: flex;
           flex-direction: column;
           align-items: center;
+        }
+        p {
+          font-size: 13px;
+          line-height: 16px;
+          color: #00c19c;
+          margin: 0;
+          transform: translateX(-30px);
         }
         input {
           width: 234px;

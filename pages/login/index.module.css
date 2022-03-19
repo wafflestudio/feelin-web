@@ -1,33 +1,46 @@
 .wrapper {
-    position: absolute;
+  position: absolute;
 
-    width: 100%;
-    min-width: 280px;
-    max-width: 450px;
-    height: 100%;
-    min-height: 568px;
-    max-height: 900px;
-    background: #000000;
+  width: 100%;
+  min-width: 280px;
+  max-width: 450px;
+  height: 100%;
+  min-height: 568px;
+  max-height: 900px;
+  background: #000000;
 
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.logo {
+  position: absolute;
+  display: flex;
+  width: 180px;
+  height: 100px;
+  top: 80px;
+  left: calc(50% - 90px);
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(90deg, #00c19c 0%, #7077d5 100%);
 }
 
 .placeholder {
-    position: absolute;
-    top: 324px;
-    font-size: 13px;
-    line-height: 16px;
+  position: absolute;
+  top: 324px;
+  font-size: 13px;
+  line-height: 16px;
 }
 
 .login {
-    background: linear-gradient(90deg, #00c19c 0%, #7077d5 100%);
+  background: linear-gradient(90deg, #00c19c 0%, #7077d5 100%);
 }
 .signup {
-    background: #000000;
-    color: white;
-    border: 2px solid;
-    border-image: linear-gradient(90deg, #00C19C 0%, #7077D5 100%);
-    border-image-slice: 1;
+  background: #000000;
+  color: white;
+  border: 2px solid;
+  border-image: linear-gradient(90deg, #00c19c 0%, #7077d5 100%);
+  border-image-slice: 1;
 }
