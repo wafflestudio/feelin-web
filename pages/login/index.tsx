@@ -32,15 +32,12 @@ const Login = () => {
         <span>로고</span>
       </div>
       <form onSubmit={onSubmit}>
-        <p>
-          <b>! 비밀번호가 일치하지 않습니다.</b>
-        </p>
         <input
           className={styles.username}
           name={"username"}
           value={input.username}
           onChange={onChange}
-          placeholder={"사용자 이름 또는 이메일 또는 전화번호"}
+          placeholder={"아이디 또는 이메일 또는 전화번호"}
           autoComplete={"off"}
         />
         <input
@@ -51,34 +48,29 @@ const Login = () => {
           onChange={onChange}
           placeholder={"비밀번호"}
         />
-        {/*{input.username === "" && (
-          <span className={styles.placeholder}>
-            <b>사용자 이름</b> 또는 <b>이메일</b> 또는 <b>전화번호</b>
-          </span>
-        )}*/}
-        {/*{input.password === "" && (
-          <span className={styles.placeholder}>
-            <b>비밀번호</b>
-          </span>
-        )}*/}
-
         <Link href={"/"}>
           <button className={styles.login}>
             <a>로그인</a>
           </button>
         </Link>
-        <Link href={"/login/signup"}>
-          <button className={styles.signup}>
-            <a>회원가입</a>
-          </button>
-        </Link>
+        <p>
+          <b>! 비밀번호가 일치하지 않습니다.</b>
+        </p>
       </form>
+      <Link href={"/login/signup"}>
+        <button className={styles.signup}>
+          <a>회원가입</a>
+        </button>
+      </Link>
       {/* css */}
       <style jsx>{`
+        span {
+          color: white;
+        }
         form {
           position: absolute;
           width: 100%;
-          top: 280px;
+          top: 300px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -87,27 +79,29 @@ const Login = () => {
           font-size: 13px;
           line-height: 16px;
           color: #00c19c;
-          margin: 0;
-          transform: translateX(-30px);
+          margin-top: 6px;
+          transform: translateX(-46px);
         }
         input {
-          width: 234px;
-          height: 40px;
-          color: white;
-          background: #000000;
-          border: 1px solid #ffffff;
-          border-radius: 8px;
-          box-sizing: border-box;
-          margin-top: 10px;
-          padding-left: 12px;
+          width: 258px;
+          height: 22px;
+          border: solid #cccccc;
+          border-width: 0 0 1px;
+          margin-top: 18px;
+          padding-left: 3px;
 
-          font-size: 13px;
-          line-height: 16px;
+          font-size: 14px;
+          line-height: 18px;
+        }
+        input:focus {
+          outline: none;
+          border-bottom: 1px solid #00c19c;
         }
         button {
-          width: 234px;
+          width: 258px;
           height: 38px;
-          margin-top: 15px;
+          font-weight: 700;
+          font-family: "Spoqa Han Sans Neo", sans-serif;
         }
         button:hover {
           cursor: pointer;
