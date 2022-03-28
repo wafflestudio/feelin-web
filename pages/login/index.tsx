@@ -49,7 +49,10 @@ const Login = () => {
           placeholder={"비밀번호"}
         />
         <Link href={"/"}>
-          <button className={styles.login}>
+          <button
+            className={styles.login}
+            disabled={input.username === "" || input.password === ""}
+          >
             <a>로그인</a>
           </button>
         </Link>
@@ -68,12 +71,12 @@ const Login = () => {
           color: white;
         }
         form {
-          position: absolute;
-          width: 100%;
-          top: 300px;
           display: flex;
           flex-direction: column;
           align-items: center;
+          position: absolute;
+          width: 100%;
+          top: 300px;
         }
         p {
           font-size: 13px;
@@ -102,9 +105,6 @@ const Login = () => {
           height: 38px;
           font-weight: 700;
           font-family: "Spoqa Han Sans Neo", sans-serif;
-        }
-        button:hover {
-          cursor: pointer;
         }
       `}</style>
     </div>
