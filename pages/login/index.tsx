@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./index.module.css";
 import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useState } from "react";
+import axios from "axios";
 
 type TLoginForm = {
   username: string;
@@ -15,8 +16,24 @@ const Login = () => {
   });
   const router = useRouter();
 
+  const handleLogin = () => {
+    axios
+      .post("https://api-feelin.kro.kr/api/v1/auth/user/signin", {
+        account: input.username,
+        password: input.password,
+      })
+      .then(() => {
+        localStorage.setItem("token", "111");
+        router.push("/");
+      })
+      .catch((e) => {
+        console.log("로그인 에러");
+      });
+  };
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
+    handleLogin();
   };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +66,11 @@ const Login = () => {
           placeholder={"비밀번호"}
         />
         <Link href={"/"}>
-          <button className={styles.login}>
+          <button
+            className={styles.login}
+            onClick={() => localStorage.setItem("token", "111")}
+            disabled={input.username === "" || input.password === ""}
+          >
             <a>로그인</a>
           </button>
         </Link>
@@ -57,7 +78,7 @@ const Login = () => {
           <b>! 비밀번호가 일치하지 않습니다.</b>
         </p>
       </form>
-      <Link href={"/login/signup"}>
+      <Link href={"/email-verify"}>
         <button className={styles.signup}>
           <a>회원가입</a>
         </button>
@@ -68,12 +89,12 @@ const Login = () => {
           color: white;
         }
         form {
-          position: absolute;
-          width: 100%;
-          top: 300px;
           display: flex;
           flex-direction: column;
           align-items: center;
+          position: absolute;
+          width: 100%;
+          top: 300px;
         }
         p {
           font-size: 13px;
@@ -102,9 +123,6 @@ const Login = () => {
           height: 38px;
           font-weight: 700;
           font-family: "Spoqa Han Sans Neo", sans-serif;
-        }
-        button:hover {
-          cursor: pointer;
         }
       `}</style>
     </div>
