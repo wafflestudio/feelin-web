@@ -15,6 +15,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  background: white;
 }
 
 .logo {
@@ -40,11 +41,14 @@
 .login {
   color: white;
   margin-top: 25px;
-  background: #7DD8C6;
+  background: #00C19C;
   border: none;
 }
 .login:hover {
   background: #008E73;
+}
+.login:disabled {
+  background: #7DD8C6;
 }
 .signup {
   position: absolute;

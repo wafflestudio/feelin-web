@@ -5,6 +5,7 @@ body {
   /*font-family: -apple-system, Spoqa Han Sans Neo, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;*/
   font-family: "Spoqa Han Sans Neo", sans-serif;
+  background: #fafafa;
 }
 
 @font-face {
@@ -19,4 +20,11 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
 }
