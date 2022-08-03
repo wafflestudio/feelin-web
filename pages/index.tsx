@@ -27,8 +27,8 @@ const Home: NextPage = () => {
           </Link>
         </li>
         <li>
-          <Link href="/post/2">
-            <a>Go to 2nd post's page</a>
+          <Link href="/post/0">
+            <a>Go to 0th post's page</a>
           </Link>
         </li>
         <li>
