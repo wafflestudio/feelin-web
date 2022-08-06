@@ -155,11 +155,11 @@ const Post = () => {
       </div>
         <div className={styles.upperBorder}/>
       <div className={styles.listWrapper}>
-        <ul className={styles.listItems}>
+        {/*<ul className={styles.listItems}>
           {songList.map(item => (
             <PlaylistItem key={item.id} item={item} songImg={item.songImg} songTitle={item.songTitle} songSinger={item.songSinger} /> //리스트에 학생 추가
           ))}
-        </ul>
+          </ul>*/}
       </div>
         <div className={styles.downBorder}/>
       <footer className={styles.footer}>
