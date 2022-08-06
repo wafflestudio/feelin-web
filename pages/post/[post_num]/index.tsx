@@ -6,7 +6,7 @@ import PlaylistItem from "./playlistItem";
 import Back from './images/back.svg';
 import Image from "next/image";
 
-const dummyPlaylist = [
+/*const dummyPlaylist = [
   {
     id: 1,
     playlistName: '퇴근길 양화대교',
@@ -102,7 +102,7 @@ const dummyPlaylist = [
         songImg: 'https://image.bugsm.co.kr/album/images/500/40581/4058181.jpg',
       },
     ]
-  }]
+  }]*/
 
 const Post = () => {
   const router = useRouter();
@@ -110,7 +110,7 @@ const Post = () => {
 
   console.log(post_num);
   
-  const songList = dummyPlaylist[Number(post_num)].playList;
+  //const songList = dummyPlaylist[Number(post_num)].playList;
 
 
   return (
