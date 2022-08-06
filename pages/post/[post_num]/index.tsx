@@ -120,7 +120,7 @@ const Post = () => {
           <Image src="/images/back.svg" alt='back' width={10} height={10}/>
         </button>
       </header>
-      <div className={styles.info}>
+      {/* <div className={styles.info}>
         <div className={styles.infoMain}>
           <img className={styles.playlistImg} src={dummyPlaylist[Number(post_num)].playlistImg} alt="playlistImg"/>
           <div className={styles.infoMainTexts}>
@@ -155,11 +155,11 @@ const Post = () => {
       </div>
         <div className={styles.upperBorder}/>
       <div className={styles.listWrapper}>
-        {/*<ul className={styles.listItems}>
+        <ul className={styles.listItems}>
           {songList.map(item => (
             <PlaylistItem key={item.id} item={item} songImg={item.songImg} songTitle={item.songTitle} songSinger={item.songSinger} /> //리스트에 학생 추가
           ))}
-          </ul>*/}
+          </ul>
       </div>
         <div className={styles.downBorder}/>
       <footer className={styles.footer}>
@@ -172,7 +172,7 @@ const Post = () => {
         <div className={styles.icon}>
           folder
         </div>
-      </footer>
+      </footer> */}
 
       {/* css */}
       <style jsx>{`
