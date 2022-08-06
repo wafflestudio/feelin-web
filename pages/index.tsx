@@ -29,12 +29,12 @@ const Home: NextPage = () => {
         </Link>
       </li>
       <li>
-        <Link href="/post/1">
+        <Link href="/post/0">
           <a>Go to 1st post's page</a>
         </Link>
       </li>
       <li>
-        <Link href="/post/2">
+        <Link href="/post/1">
           <a>Go to 2nd post's page</a>
         </Link>
       </li>
