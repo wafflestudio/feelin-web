@@ -108,6 +108,8 @@ const Post = () => {
   const router = useRouter();
   const { post_num } = router.query;
 
+  console.log(post_num);
+  
   const songList = dummyPlaylist[Number(post_num)].playList;
 
 
