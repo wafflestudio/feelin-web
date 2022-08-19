@@ -22,8 +22,8 @@ const Login = () => {
         account: input.username,
         password: input.password,
       })
-      .then(() => {
-        localStorage.setItem("token", "111");
+      .then(response => {
+        localStorage.setItem("token", response.data.token);
         router.push("/");
       })
       .catch((e) => {
@@ -35,6 +35,7 @@ const Login = () => {
     e.preventDefault();
     handleLogin();
   };
+
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInput({
@@ -65,15 +66,14 @@ const Login = () => {
           onChange={onChange}
           placeholder={"비밀번호"}
         />
-        <Link href={"/"}>
           <button
             className={styles.login}
-            onClick={() => localStorage.setItem("token", "111")}
+            onClick={() => 
+              handleLogin}
             disabled={input.username === "" || input.password === ""}
           >
             <a>로그인</a>
           </button>
-        </Link>
         <p>
           <b>! 비밀번호가 일치하지 않습니다.</b>
         </p>

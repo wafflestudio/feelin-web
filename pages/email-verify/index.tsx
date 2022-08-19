@@ -2,6 +2,9 @@ import styles from "./index.module.scss";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import axios from "axios";
+import Link from "next/link";
+import Image from "next/image";
+import Back from '../post/[post_num]/images/back.svg';
 
 const EmailVerify = () => {
   const [sendingEmail, setSendingEmail] = useState<boolean>(false);
@@ -52,29 +55,75 @@ const EmailVerify = () => {
   };
 
   return (
-    <div>
-      <p>이메일</p>
+    <div className={styles.wrapper}>
+      <header className={styles.header}>
+        <button className={styles.goBack} onClick={() => { router.back() }}>
+          <Image src={Back} alt='back' width={25} height={25}/>
+        </button>
+        <div>
+          Verify your Email
+        </div>
+      </header>
+      <div>
+      <div className={styles.inputName}>Email</div>
       <input
+      className={styles.input}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder={"이메일을 입력하세요."}
       />
-      <button onClick={verifyEmail} disabled={sendingEmail || authenticating}>
-        인증
-      </button>
+      <div className={styles.EmailVerifyButtonWrapper}>
+        <button className={styles.EmailVerifyButton} onClick={verifyEmail} disabled={sendingEmail || authenticating}>
+          Verify
+        </button>
+      </div>
+      
+      {/*<div className={styles.EmailVerifyButtonWrapper}>
+        <Link href={"/signup/"+email}>
+          <button className={styles.EmailVerifyButton}>
+            Sign Up
+          </button>
+      </Link>
+  </div>*/}
+
       {verified && (
         <>
           <input
+            className = {styles.input}
             value={code}
             onChange={(e) => setCode(e.target.value)}
             placeholder={"인증 코드를 입력하세요."}
           />
-          <button onClick={verifyCode} disabled={authenticating}>
-            {email}로 회원가입
-          </button>
+          <div className={styles.EmailVerifyButtonWrapper}>
+            <button onClick={verifyCode} disabled={authenticating} className={styles.EmailVerifyButton}>
+              Sign Up with <br/> {email}
+            </button>
+          </div>
         </>
       )}
     </div>
+
+      <style jsx>{`
+      input {
+        border: solid #cccccc;
+        border-width: 0 0 1px;
+
+        font-size: 14px;
+        line-height: 18px;
+      }
+      input:focus {
+        outline: none;
+        border-bottom: 1px solid #00c19c;
+      }
+      button:hover {
+        cursor: pointer;
+      }
+      `}
+        
+      
+      </style>
+    </div>
+    
   );
 };
 
