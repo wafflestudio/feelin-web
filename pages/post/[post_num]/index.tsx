@@ -5,8 +5,9 @@ import Link from "next/link";
 import PlaylistItem from "./playlistItem";
 import Back from './images/back.svg';
 import Image from "next/image";
+import musicnote from "../../../public/musicnote.png";
 
-/*const dummyPlaylist = [
+const dummyPlaylist = [
   {
     id: 1,
     playlistName: '퇴근길 양화대교',
@@ -14,7 +15,7 @@ import Image from "next/image";
     username: '김와플',
     musicNum: 23,
     playtime: 83,
-    text: '퇴근길 양화대교의 감성을 가득 담은 플레이리스트입니다.퇴근할 때 들으면 좋아요. 아니면 코딩할 때 들어도 좋아요!',
+    text: '퇴근길 양화대교의 감성을 가득 담은 플레이리스트입니다. 퇴근할 때 들으면 좋아요. 아니면 코딩할 때 들어도 좋아요!',
     playlistImg: 'https://cdn.pixabay.com/photo/2020/02/04/13/47/looking-4818206_1280.jpg',
     playList: [
       {
@@ -102,7 +103,7 @@ import Image from "next/image";
         songImg: 'https://image.bugsm.co.kr/album/images/500/40581/4058181.jpg',
       },
     ]
-  }]*/
+  }]
 
 const Post = () => {
   const router = useRouter();
@@ -117,26 +118,33 @@ const Post = () => {
     <div className={styles.wrapper}>
       <header className={styles.header}>
         <button className={styles.goBack} onClick={() => { router.back() }}>
-          <Image src="/images/back.svg" alt='back' width={10} height={10}/>
+          <Image src={Back} alt='back' width={25} height={25}/>
         </button>
       </header>
-      {/* <div className={styles.info}>
+      <div className={styles.info}>
         <div className={styles.infoMain}>
-          <img className={styles.playlistImg} src={dummyPlaylist[Number(post_num)].playlistImg} alt="playlistImg"/>
+          <div className={styles.playlistImgWrapper}>
+            <img className={styles.playlistImg} src={post_num ? dummyPlaylist[Number(post_num)].playlistImg: undefined} alt="playlistImg"/>
+          </div>
           <div className={styles.infoMainTexts}>
-            <div>
-              <img className={styles.profileImg} src={post_num ? dummyPlaylist[Number(post_num)].profileImg : undefined} alt="profileImg"/>
-              {dummyPlaylist[Number(post_num)].username}
+            <div className={styles.profileImgAndNameWrapper}>
+              <div className={styles.profileImgWrapper}>
+                <img className={styles.profileImg} src={post_num ? dummyPlaylist[Number(post_num)].profileImg : undefined} alt="profileImg"/>
+              </div>
+              {post_num ? dummyPlaylist[Number(post_num)].username : undefined}
             </div>
-            <div>
-              {dummyPlaylist[Number(post_num)].playlistName}
+            <div className={styles.playlistNameWrapper}>
+              {post_num ? dummyPlaylist[Number(post_num)].playlistName : undefined}
             </div>
             <div className={styles.musicNumAndPlaytime}>
               <div className={styles.musicNum}>
-                {dummyPlaylist[Number(post_num)].musicNum} 곡
+                <Image src={musicnote} alt='musicnote' width={20} height={20}/>
+                <div>
+                  {post_num ? dummyPlaylist[Number(post_num)].musicNum : undefined}곡
+                </div>
               </div>
               <div className={styles.playtime}>
-                {dummyPlaylist[Number(post_num)].playtime} 분
+                {post_num ? dummyPlaylist[Number(post_num)].playtime : undefined}분
               </div>
             </div>
             <div>
@@ -145,7 +153,7 @@ const Post = () => {
           </div>
         </div>
         <div className={styles.infoText}>
-          {dummyPlaylist[Number(post_num)].text}
+          {post_num ? dummyPlaylist[Number(post_num)].text : undefined}
         </div>
         <div className={styles.addButtonWrapper}>
           <button className={styles.addButton}>
@@ -156,9 +164,9 @@ const Post = () => {
         <div className={styles.upperBorder}/>
       <div className={styles.listWrapper}>
         <ul className={styles.listItems}>
-          {songList.map(item => (
+          {post_num ? dummyPlaylist[Number(post_num)].playList.map(item => (
             <PlaylistItem key={item.id} item={item} songImg={item.songImg} songTitle={item.songTitle} songSinger={item.songSinger} /> //리스트에 학생 추가
-          ))}
+          ))  : undefined}
           </ul>
       </div>
         <div className={styles.downBorder}/>
@@ -172,7 +180,7 @@ const Post = () => {
         <div className={styles.icon}>
           folder
         </div>
-      </footer> */}
+      </footer>
 
       {/* css */}
       <style jsx>{`
