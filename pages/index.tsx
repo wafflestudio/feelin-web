@@ -10,9 +10,15 @@ const Home: NextPage = () => {
 
   const router = useRouter();
 
+
   useEffect(() => {
     localStorage.getItem("token") === null && router.push("/login");
   });
+
+  const Logout = ()=> {
+      localStorage.removeItem("token");
+      router.push("/login");
+  }
 
   return (
     <ul>
@@ -55,12 +61,9 @@ const Home: NextPage = () => {
       </li>
       <li>
         <button
-          onClick={() => {
-            localStorage.removeItem("token");
-            router.push("/login");
-          }}
+          onClick={Logout}
         >
-          로그아웃
+          LogOut
         </button>
       </li>
     </ul>
