@@ -12,12 +12,12 @@ const Home: NextPage = () => {
 
 
   useEffect(() => {
-    localStorage.getItem("token") === null && router.push("/login");
+    localStorage.getItem("token") === null && router.push("./login");
   });
 
   const Logout = ()=> {
       localStorage.removeItem("token");
-      router.push("/login");
+      router.push("./login");
   }
 
   return (
@@ -25,37 +25,37 @@ const Home: NextPage = () => {
       <li>main page here</li>
       <hr></hr>
       <li>
-        <Link href="/profile/wafflestudio">
+        <Link href="./profile/wafflestudio">
           <a>Go to wafflestudio's profile page</a>
         </Link>
       </li>
       <li>
-        <Link href="/profile/flee">
+        <Link href="./profile/flee">
           <a>Go to Flee's profile page</a>
         </Link>
       </li>
       <li>
-        <Link href="/post/0">
+        <Link href="./post/0">
           <a>Go to 1st post's page</a>
         </Link>
       </li>
       <li>
-        <Link href="/post/1">
+        <Link href="./post/1">
           <a>Go to 2nd post's page</a>
         </Link>
       </li>
       <li>
-        <Link href="/notification">
+        <Link href="./notification">
           <a>Go to notification page</a>
         </Link>
       </li>
       <li>
-        <Link href="/setting">
+        <Link href="./setting">
           <a>Go to setting page</a>
         </Link>
       </li>
       <li>
-        <Link href="/write">
+        <Link href="./write">
           <a>Write your post</a>
         </Link>
       </li>

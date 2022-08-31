@@ -44,7 +44,7 @@ const EmailVerify = () => {
       .then(() => {
         setAuthenticating(false);
         router.push({
-          pathname: "/signup",
+          pathname: "./signup",
           query: { email: email },
         });
       })
@@ -57,7 +57,7 @@ const EmailVerify = () => {
   const tmpVerifyEmail = () => {
     setAuthenticating(false);
     router.push({
-      pathname: "/signup",
+      pathname: "./signup",
       query: { email: email },
     });
   }
