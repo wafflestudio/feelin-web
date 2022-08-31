@@ -36,7 +36,8 @@ const Login = () => {
   const handleTempLogin = () => {
     localStorage.setItem("token", "1");
     window.postMessage("temp");
-    console.log(localStorage.getItem("token"))
+    console.log(localStorage.getItem("token"));
+    router.push('/');
   }
 
   const onSubmit = (e: FormEvent) => {
