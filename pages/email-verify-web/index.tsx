@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Back from '../post/[post_num]/images/back.svg';
 
-const EmailVerify = () => {
+const EmailVerifyWeb = () => {
   const [sendingEmail, setSendingEmail] = useState<boolean>(false);
   const [authenticating, setAuthenticating] = useState<boolean>(false);
   const [verified, setVerified] = useState<boolean>(false);
@@ -127,4 +127,4 @@ const EmailVerify = () => {
   );
 };
 
-export default EmailVerify;
+export default EmailVerifyWeb;
