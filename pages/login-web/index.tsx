@@ -9,7 +9,6 @@ type TLoginForm = {
   password: string;
 };
 
-
 const Login = () => {
   const [input, setInput] = useState<TLoginForm>({
     username: "",
@@ -25,7 +24,6 @@ const Login = () => {
       })
       .then(response => {
         localStorage.setItem("token", response.data.token);
-        window.postMessage("ok");
         router.push("/");
       })
       .catch((e) => {
@@ -35,7 +33,7 @@ const Login = () => {
 
   const handleTempLogin = () => {
     localStorage.setItem("token", "1");
-    window.Token.postMessage("ok");
+    router.push("/");
     console.log(localStorage.getItem("token"))
   }
 
