@@ -25,17 +25,17 @@ const Login = () => {
       })
       .then(response => {
         localStorage.setItem("token", response.data.token);
-        window.postMessage("ok");
-        router.push("/");
+        window.postMessage("login");
       })
       .catch((e) => {
         console.log("로그인 에러");
       });
   };
 
+
   const handleTempLogin = () => {
     localStorage.setItem("token", "1");
-    window.Token.postMessage("ok");
+    window.postMessage("temp");
     console.log(localStorage.getItem("token"))
   }
 
