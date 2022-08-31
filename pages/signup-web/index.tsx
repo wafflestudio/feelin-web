@@ -13,7 +13,7 @@ type TSignupForm = {
   phoneNumber: string;
 };
 
-const Signup = () => {
+const SignupWeb = () => {
   const router = useRouter();
 
   const [input, setInput] = useState<TSignupForm>({
@@ -178,4 +178,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignupWeb;
