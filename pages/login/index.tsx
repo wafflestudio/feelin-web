@@ -25,7 +25,6 @@ const Login = () => {
       })
       .then(response => {
         localStorage.setItem("token", response.data.token);
-        window.postMessage("login");
         router.push('./');
       })
       .catch((e) => {
@@ -36,7 +35,6 @@ const Login = () => {
 
   const handleTempLogin = () => {
     localStorage.setItem("token", "1");
-    window.postMessage("temp");
     console.log(localStorage.getItem("token"));
     router.push('./');
   }

@@ -1,4 +1,4 @@
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
