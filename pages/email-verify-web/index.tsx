@@ -54,12 +54,16 @@ const EmailVerify = () => {
       });
   };
 
-  const tmpVerifyEmail = () => {
-    router.push("/signup");
-  }
-
   return (
     <div className={styles.wrapper}>
+      <header className={styles.header}>
+        <button className={styles.goBack} onClick={() => { router.back() }}>
+          <Image src={Back} alt='back' width={25} height={25}/>
+        </button>
+        <div>
+          Verify your Email
+        </div>
+      </header>
       <div>
       <div className={styles.inputName}>Email</div>
       <input
@@ -71,12 +75,6 @@ const EmailVerify = () => {
       <div className={styles.EmailVerifyButtonWrapper}>
         <button className={styles.EmailVerifyButton} onClick={verifyEmail} disabled={sendingEmail || authenticating}>
           Verify
-        </button>
-      </div>
-      
-      <div className={styles.EmailVerifyButtonWrapper}>
-        <button className={styles.EmailVerifyButton} onClick={tmpVerifyEmail}>
-          temp Verify
         </button>
       </div>
       
