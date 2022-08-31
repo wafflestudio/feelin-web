@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
@@ -92,7 +92,7 @@ const Login = () => {
           <b>! 비밀번호가 일치하지 않습니다.</b>
         </p>
       </form>
-      <Link href={"/email-verify"}>
+      <Link href={"./email-verify"}>
         <button className={styles.signup}>
           <a>회원가입</a>
         </button>
