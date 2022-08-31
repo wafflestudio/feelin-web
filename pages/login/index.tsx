@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./index.module.css";
+import styles from "./index.module.scss";
 import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
