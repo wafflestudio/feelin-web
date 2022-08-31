@@ -9,7 +9,7 @@ type TLoginForm = {
   password: string;
 };
 
-const Login = () => {
+const LoginWeb = () => {
   const [input, setInput] = useState<TLoginForm>({
     username: "",
     password: "",
@@ -140,4 +140,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginWeb;
