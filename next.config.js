@@ -11,4 +11,8 @@ module.exports = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  generateBuildId: async () => {
+    // Return custom build ID, like the latest git commit hash
+    return 'my-build-id'
+  }
 }
