@@ -55,7 +55,11 @@ const EmailVerify = () => {
   };
 
   const tmpVerifyEmail = () => {
-    router.push("/signup");
+    setAuthenticating(false);
+    router.push({
+      pathname: "/signup",
+      query: { email: email },
+    });
   }
 
   return (
