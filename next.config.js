@@ -6,6 +6,7 @@ const nextConfig = {
 module.exports = nextConfig
 
 module.exports = {
+  trailingSlash: true,
   eslint: {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
@@ -14,5 +15,5 @@ module.exports = {
   generateBuildId: async () => {
     // Return custom build ID, like the latest git commit hash
     return 'my-build-id'
-  }
+  },
 }
