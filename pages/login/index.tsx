@@ -3,14 +3,22 @@ import styles from "./index.module.css";
 import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
+import Post from "../post/[post_num]";
+import Head from "next/head";
 
 type TLoginForm = {
   username: string;
   password: string;
 };
 
+declare global {
+  interface Window {
+    flutter_inappwebview: any;
+  }
+}
 
 const Login = () => {
+  
   const [input, setInput] = useState<TLoginForm>({
     username: "",
     password: "",
@@ -26,6 +34,7 @@ const Login = () => {
       .then(response => {
         localStorage.setItem("token", response.data.token);
         router.push('./');
+        callHandler();
       })
       .catch((e) => {
         console.log("로그인 에러");
@@ -36,6 +45,7 @@ const Login = () => {
   const handleTempLogin = () => {
     localStorage.setItem("token", "1");
     console.log(localStorage.getItem("token"));
+    callHandler();
     router.push('./');
   }
 
@@ -52,8 +62,19 @@ const Login = () => {
     });
   };
 
+  const callHandler = () => {
+    window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
+      window.flutter_inappwebview.callHandler('Token', '*** Message From Server JS ***').then(function(result : any) {
+        console.log(result);
+      });
+      console.log("gooooood");
+    }); 
+    console.log("good");
+  }
+  
   return (
     <div className={styles.wrapper}>
+      
       <div className={styles.logo}>
         <span>로고</span>
       </div>
