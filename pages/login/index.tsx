@@ -43,9 +43,15 @@ const Login = () => {
 
 
   const handleTempLogin = () => {
-    localStorage.setItem("token", "1");
+    localStorage.setItem("token", "token");
     console.log(localStorage.getItem("token"));
     callHandler();
+    router.push('./index.html');
+  }
+
+  const handleToMain = () => {
+    localStorage.setItem("token", "token");
+    console.log(localStorage.getItem("token"));
     router.push('./');
   }
 
@@ -71,6 +77,7 @@ const Login = () => {
     }); 
     console.log("good");
   }
+
   
   return (
     <div className={styles.wrapper}>
@@ -107,6 +114,11 @@ const Login = () => {
             onClick={handleTempLogin}
           >
             <a>임시로그인</a>
+          </button>
+          <button
+            onClick={handleToMain}
+          >
+            <a>to Main</a>
           </button>
         <p>
           <b>! 비밀번호가 일치하지 않습니다.</b>

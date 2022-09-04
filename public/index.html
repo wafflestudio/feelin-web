@@ -15,8 +15,9 @@
                 if (flutterChannel) {
                     flutterChannel.postMessage(message);
                 }
-              console.log("hello");
+                console.log(message);
               }
+            sendToFlutter(localStorage.getItem("token"));
             </script>
             
     </div>
