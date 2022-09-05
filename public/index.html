@@ -11,13 +11,12 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
         <script type='text/javascript'>
-            function sendToFlutter(message) {
+            function sendToFlutter() {
                 if (flutterChannel) {
-                    flutterChannel.postMessage(message);
+                    flutterChannel.postMessage(localStorage.getItem("token"));
                 }
-                console.log(message);
+                console.log(localStorage.getItem("token"));
               }
-            sendToFlutter(localStorage.getItem("token"));
             </script>
             
     </div>
