@@ -11,13 +11,15 @@ type TLoginForm = {
   password: string;
 };
 
-declare global {
-  interface Window {
-    flutter_inappwebview: any;
-  }
+
+interface flutterChannelType {
+  postMessage: any
 }
 
+
 const Login = () => {
+
+  const [flutterChannel, setFlutterChannel] = useState<flutterChannelType | null>(null);
   
   const [input, setInput] = useState<TLoginForm>({
     username: "",
@@ -34,7 +36,7 @@ const Login = () => {
       .then(response => {
         localStorage.setItem("token", response.data.token);
         router.push('./');
-        callHandler();
+        sendToFlutter();
       })
       .catch((e) => {
         console.log("로그인 에러");
@@ -45,8 +47,7 @@ const Login = () => {
   const handleTempLogin = () => {
     localStorage.setItem("token", "token");
     console.log(localStorage.getItem("token"));
-    callHandler();
-    router.push('./index.html');
+    sendToFlutter();
   }
 
   const handleToMain = () => {
@@ -68,20 +69,16 @@ const Login = () => {
     });
   };
 
-  const callHandler = () => {
-    window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
-      window.flutter_inappwebview.callHandler('Token', '*** Message From Server JS ***').then(function(result : any) {
-        console.log(result);
-      });
-      console.log("gooooood");
-    }); 
-    console.log("good");
-  }
 
+  const sendToFlutter = () => {
+      if (flutterChannel !== null) {
+          flutterChannel.postMessage(localStorage.getItem("token"));
+      }
+      console.log(localStorage.getItem("token"));
+    }
   
   return (
     <div className={styles.wrapper}>
-      
       <div className={styles.logo}>
         <span>로고</span>
       </div>
@@ -170,7 +167,7 @@ const Login = () => {
           font-weight: 700;
           font-family: "Spoqa Han Sans Neo", sans-serif;
         }
-      `}</style>
+        `}</style>
     </div>
   );
 };
