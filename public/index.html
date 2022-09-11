@@ -10,17 +10,18 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
-        <script type='text/javascript'>
-            function sendToFlutter() {
-                if (flutterChannel) {
-                    flutterChannel.postMessage(localStorage.getItem("token"));
-                }
-                console.log(localStorage.getItem("token"));
-              }
-              
-            sendToFlutter();
-            </script>
             Hello
+            <button onclick={sendToFlutter()}>
+              <script type='text/javascript'>
+                function sendToFlutter() {
+                    if (flutterChannel) {
+                        flutterChannel.postMessage(localStorage.getItem("token"));
+                    }
+                    console.log(localStorage.getItem("token"));
+                  }
+                </script>
+              Click to send to Flutter
+            </button>
     </div>
     <!--
       This HTML file is a template.
