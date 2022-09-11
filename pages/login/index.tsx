@@ -12,14 +12,14 @@ type TLoginForm = {
 };
 
 
-interface flutterChannelType {
-  postMessage: any
-}
+// interface flutterChannelType {
+//   postMessage: (para:string | null) => void
+// }
 
 
 const Login = () => {
 
-  const [flutterChannel, setFlutterChannel] = useState<flutterChannelType | null>(null);
+ // const [flutterChannel, setFlutterChannel] = useState<flutterChannelType | null>(null);
   
   const [input, setInput] = useState<TLoginForm>({
     username: "",
@@ -36,7 +36,7 @@ const Login = () => {
       .then(response => {
         localStorage.setItem("token", response.data.token);
         router.push('./');
-        sendToFlutter();
+        //sendToFlutter();
       })
       .catch((e) => {
         console.log("로그인 에러");
@@ -47,7 +47,7 @@ const Login = () => {
   const handleTempLogin = () => {
     localStorage.setItem("token", "token");
     console.log(localStorage.getItem("token"));
-    sendToFlutter();
+    router.push('./index.html');
   }
 
   const handleToMain = () => {
@@ -70,19 +70,31 @@ const Login = () => {
   };
 
 
-  const sendToFlutter = () => {
-      if (flutterChannel !== null) {
-          flutterChannel.postMessage(localStorage.getItem("token"));
-      }
-      console.log(localStorage.getItem("token"));
-    }
+  // const sendToFlutter = () => {
+  //   console.log(flutterChannel==null)
+  //     if (flutterChannel !== null) {
+  //         flutterChannel.postMessage(localStorage.getItem("token"));
+  //     }
+  //     console.log(localStorage.getItem("token"));
+  //   }
   
   return (
     <div className={styles.wrapper}>
+      
       <div className={styles.logo}>
         <span>로고</span>
       </div>
       <form onSubmit={onSubmit}>
+      <script type='text/javascript'>
+        {`function sendToFlutter = () => {
+            console.log(flutterChannel==null)
+              if (flutterChannel !== null) {
+                flutterChannel.postMessage(localStorage.getItem("token"));
+              }
+            console.log(localStorage.getItem("token"));
+          }`
+        }
+      </script>
         <input
           className={styles.username}
           name={"username"}
@@ -121,11 +133,11 @@ const Login = () => {
           <b>! 비밀번호가 일치하지 않습니다.</b>
         </p>
       </form>
-      <Link href={"./email-verify"}>
-        <button className={styles.signup}>
+      <button className={styles.signup}>
+        <Link href={"./email-verify"}>  
           <a>회원가입</a>
-        </button>
-      </Link>
+        </Link>
+      </button>
       {/* css */}
       <style jsx>{`
         span {
@@ -137,7 +149,7 @@ const Login = () => {
           align-items: center;
           position: absolute;
           width: 100%;
-          top: 300px;
+          top: 35%;
         }
         p {
           font-size: 13px;
@@ -168,7 +180,9 @@ const Login = () => {
           font-family: "Spoqa Han Sans Neo", sans-serif;
         }
         `}</style>
-    </div>
+        
+        
+      </div>
   );
 };
 

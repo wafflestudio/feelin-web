@@ -8,23 +8,31 @@
 }
 
 
+
 .header{
   position: fixed;
   display: flex;
-  width:100%;
+  width: 90%;
   height: 40px;
   justify-content: flex-start;
   align-items: center;
-  top : 30px;
-  font-size: 30px;
+  top : 10px;
+  font-size: 20px;
+  background-color: white;
 }
 
 .goBack{
-width: 10%;
-background-color: white;
-border: 0px;
-margin-left: 30px;
-margin-right: 100px;
+  width: 10%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  border: 0px;
+  background-color: white;
+}
+
+.goBack:hover{
+  background-color: #f0f0f0;
 }
 
 .wrapper {
