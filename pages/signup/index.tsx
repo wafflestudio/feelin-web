@@ -83,10 +83,12 @@ const Signup = () => {
           width={20}
           height={20}/>
         </button>
+      <div className={styles.fill}>
+        <p>
+          Fill your profile
+        </p>
+        </div>
       </header>
-      <div>
-        Fill your profile
-      </div>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.inputName}>
           Email
