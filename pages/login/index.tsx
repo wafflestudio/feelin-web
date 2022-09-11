@@ -130,7 +130,7 @@ const Login = () => {
             <a>to Main</a>
           </button>
         <p>
-          <b>! 비밀번호가 일치하지 않습니다.</b>
+          <b>version 0.0.16</b>
         </p>
       </form>
       <button className={styles.signup}>
@@ -156,7 +156,6 @@ const Login = () => {
           line-height: 16px;
           color: #00c19c;
           margin-top: 6px;
-          transform: translateX(-46px);
         }
         input {
           width: 258px;
