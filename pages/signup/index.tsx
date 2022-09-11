@@ -73,6 +73,17 @@ const Signup = () => {
 
   return (
     <div className={styles.wrapper}>
+      <header className={styles.header}>
+        <button
+        onClick={router.back}
+        className={styles.goBack}>
+          <Image
+          alt="goBack"
+          src={Back}
+          width={20}
+          height={20}/>
+        </button>
+      </header>
       <div>
         Fill your profile
       </div>

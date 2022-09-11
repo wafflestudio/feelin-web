@@ -1,6 +1,6 @@
 import styles from "./index.module.css";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
@@ -62,10 +62,24 @@ const EmailVerify = () => {
     });
   }
 
+
   return (
     <div className={styles.wrapper}>
+      <header className={styles.header}>
+        <button
+          onClick={router.back}
+          className={styles.goBack}>
+          <Image
+          alt="goBack"
+          src={Back}
+          width={20}
+          height={20}/>
+        </button>
+      </header>
       <div>
       <div className={styles.inputName}>Email</div>
+      <form className={styles.form}>
+        
       <input
       className={styles.input}
         value={email}
@@ -83,6 +97,7 @@ const EmailVerify = () => {
           temp Verify
         </button>
       </div>
+      </form>
       
       {/*<div className={styles.EmailVerifyButtonWrapper}>
         <Link href={"/signup/"+email}>
