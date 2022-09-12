@@ -85,16 +85,6 @@ const Login = () => {
         <span>로고</span>
       </div>
       <form onSubmit={onSubmit}>
-      <script type='text/javascript'>
-        {`function sendToFlutter = () => {
-            console.log(flutterChannel==null)
-              if (flutterChannel !== null) {
-                flutterChannel.postMessage(localStorage.getItem("token"));
-              }
-            console.log(localStorage.getItem("token"));
-          }`
-        }
-      </script>
         <input
           className={styles.username}
           name={"username"}
@@ -130,7 +120,7 @@ const Login = () => {
             <a>to Main</a>
           </button>
         <p>
-          <b>version 0.0.16</b>
+          <b>version 0.0.17</b>
         </p>
       </form>
       <button className={styles.signup}>
@@ -177,6 +167,7 @@ const Login = () => {
           height: 38px;
           font-weight: 700;
           font-family: "Spoqa Han Sans Neo", sans-serif;
+          margin-top: 3px;
         }
         `}</style>
         
