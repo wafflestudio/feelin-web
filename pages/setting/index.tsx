@@ -8,59 +8,21 @@ import axios from "axios";
 
 const Setting=()=>{
     const router = useRouter();
-    const [sendingEmail, setSendingEmail] = useState<boolean>(false);
-    const [authenticating, setAuthenticating] = useState<boolean>(false);
-    const [verified, setVerified] = useState<boolean>(false);
-    const [verifiedEmail, setVerifiedEmail] = useState<string>("");
-    const [email, setEmail] = useState<string>("");
-    const [code, setCode] = useState<string>("");
 
 
-  const verifyEmail = () => {
-    setVerified(false);
-    setSendingEmail(true);
-    axios
-      .post("https://api-feelin.kro.kr/api/v1/auth/user", {
-        email: email,
-      })
-      .then(() => {
-        setVerified(true);
-        setSendingEmail(false);
-        setVerifiedEmail(email);
-      })
-      .catch((error) => {
-        setSendingEmail(false);
-        console.log("이메일 인증 에러");
-      });
-  };
+    const handleLogOut = () => {
+        axios
+          .post("https://api-feelin.kro.kr/api/v1/auth/user/signout", {
 
-  const verifyCode = () => {
-    setAuthenticating(true);
-    axios
-      .post("https://api-feelin.kro.kr/api/v1/auth/user/verify-code", {
-        email: verifiedEmail,
-        code: code,
-      })
-      .then(() => {
-        setAuthenticating(false);
-        router.push({
-          pathname: "./signup",
-          query: { email: email },
-        });
-      })
-      .catch((e) => {
-        setAuthenticating(false);
-        console.log("코드 인증 에러");
-      });
-  };
-
-  const tmpVerifyEmail = () => {
-    setAuthenticating(false);
-    router.push({
-      pathname: "./signup",
-      query: { email: email },
-    });
-  }
+          })
+          .then(response => {
+            console.log("로그아웃 성공");
+            router.push('./');
+          })
+          .catch((e) => {
+            console.log("로그아웃 에러");
+          });
+      };
 
     return(
     <div className={styles.wrapper}>
@@ -79,7 +41,7 @@ const Setting=()=>{
         <div className={styles.border}/>
         <div className={styles.settingMainWrapper}>
           
-            <button className={styles.SettingButton} onClick={tmpVerifyEmail}>
+            <button className={styles.SettingButton}>
                 알림
                 <div className={styles.goIn}>
                     <Image
@@ -89,7 +51,7 @@ const Setting=()=>{
                     height={20}/>
                 </div>
             </button>
-            <button className={styles.SettingButton} onClick={tmpVerifyEmail}>
+            <button className={styles.SettingButton}>
                 개인정보
                 <div className={styles.goIn}>
                     <Image
@@ -99,7 +61,7 @@ const Setting=()=>{
                     height={20}/>
                 </div>
             </button>
-            <button className={styles.SettingButton} onClick={tmpVerifyEmail}>
+            <button className={styles.SettingButton}>
                 보안
                 <div className={styles.goIn}>
                     <Image
@@ -109,7 +71,7 @@ const Setting=()=>{
                     height={20}/>
                 </div>
             </button>
-            <button className={styles.SettingButton} onClick={tmpVerifyEmail}>
+            <button className={styles.SettingButton}>
                 계정
                 <div className={styles.goIn}>
                     <Image
@@ -119,7 +81,7 @@ const Setting=()=>{
                     height={20}/>
                 </div>
             </button>
-            <button className={styles.SettingButton} onClick={tmpVerifyEmail}>
+            <button className={styles.SettingButton}>
                 도움말
                 <div className={styles.goIn}>
                     <Image
@@ -129,7 +91,7 @@ const Setting=()=>{
                     height={20}/>
                 </div>
             </button>
-            <button className={styles.SettingButton} onClick={tmpVerifyEmail}>
+            <button className={styles.SettingButton}>
                 소개
                 <div className={styles.goIn}>
                     <Image
@@ -139,7 +101,7 @@ const Setting=()=>{
                     height={20}/>
                 </div>
             </button>
-            <button className={styles.SettingButton} onClick={tmpVerifyEmail}>
+            <button className={styles.SettingButton}>
                 스트리밍 서비스 계정 연동
                 <div className={styles.goIn}>
                     <Image
@@ -149,7 +111,7 @@ const Setting=()=>{
                     height={20}/>
                 </div>
             </button>
-            <button className={styles.LogOutButton} onClick={verifyEmail} disabled={sendingEmail || authenticating}>
+            <button className={styles.LogOutButton} onClick={handleLogOut}>
                 LogOut $ID
                 <div className={styles.goIn}>
                     <Image
