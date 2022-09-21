@@ -12,14 +12,9 @@ type TLoginForm = {
 };
 
 
-// interface flutterChannelType {
-//   postMessage: (para:string | null) => void
-// }
-
 
 const Login = () => {
 
- // const [flutterChannel, setFlutterChannel] = useState<flutterChannelType | null>(null);
   
   const [input, setInput] = useState<TLoginForm>({
     username: "",
@@ -69,14 +64,6 @@ const Login = () => {
     });
   };
 
-
-  // const sendToFlutter = () => {
-  //   console.log(flutterChannel==null)
-  //     if (flutterChannel !== null) {
-  //         flutterChannel.postMessage(localStorage.getItem("token"));
-  //     }
-  //     console.log(localStorage.getItem("token"));
-  //   }
   
   return (
     <div className={styles.wrapper}>
@@ -120,7 +107,7 @@ const Login = () => {
             <a>to Main</a>
           </button>
         <p>
-          <b>version 0.0.17</b>
+          <b>version 0.0.18</b>
         </p>
       </form>
       <button className={styles.signup}>
