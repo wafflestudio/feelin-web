@@ -1,0 +1,171 @@
+
+.wrapper {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+  
+    width: 100%;
+    min-width: 280px;
+    max-width: 450px;
+    height: 100%;
+    border: solid #e9e9e9;
+    border-width: 0 1px;
+  
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    background: white;
+  }
+  
+  .border {
+    position: fixed;
+    width: 100%;
+    height: 0%;
+    border-bottom : 1px solid #e9e9e9;
+    top: 95px;
+  }
+  
+    .header{
+      position: fixed;
+      display: flex;
+      width: 100%;
+      padding: 35px;
+      height: 40px;
+      justify-content: flex-start;
+      align-items: center;
+      top : 10px;
+      font-size: 20px;
+      background-color: white;
+    }
+    
+    .goBack{
+      width: 10%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      border-radius: 20px;
+      border: 0px;
+      background-color: white;
+    }
+    
+    .goBack:hover{
+      background-color: #f0f0f0;
+    }
+    
+    
+    .headerName {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      margin-right: 36.35px;
+    }
+    
+    .input {
+      display: flex;
+      margin-bottom: 30px;
+      width: 100%;
+    }
+  
+    .settingMainWrapper{
+      position: relative;
+      display: flex;
+      width: 100%;
+      top: 60px;
+      height: calc(100% - 60px);
+      max-height: 900px;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: auto;
+    }
+  
+    .goIn{
+      transform: rotate(180deg);
+    }
+    
+    .SettingButton {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      align-items: center;
+      color: black;
+      width: 100%;
+      height: 100px;
+      background: #FFFFFF;
+      border-top: 1px solid #e9e9e9;
+      border-bottom: 1px solid #e9e9e9;
+      border-left: 0;
+      border-right: 0;
+      font-size: 16px;
+      font-weight: 400;
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      
+    }
+    
+    .SettingButton:hover {
+      color: black;
+      background: #e9e9e9;
+    }
+    
+    .SettingButton:disabled {
+      color: rgb(179, 179, 179);
+      background: #ffffff;
+    }
+    
+    .SettingButtonWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+      margin-bottom: 50px;
+      padding: 2px;
+      width: 100%;
+      height: 40px;
+      background: linear-gradient(90deg, #00c19c 0%, #7077d5 100%);
+    }
+  
+  
+    .LogOutButton {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      align-items: center;
+      color: red;
+      width: 100%;
+      height: 100px;
+      background: #FFFFFF;
+      border-top: 1px solid #e9e9e9;
+      border-bottom: 1px solid #e9e9e9;
+      border-left: 0;
+      border-right: 0;
+      font-size: 16px;
+      font-weight: 400;
+      font-family: "Spoqa Han Sans Neo", sans-serif;
+      
+    }
+    
+    .LogOutButton:hover {
+      color: red;
+      background: #e9e9e9;
+    }
+    
+    .LogOutButton:disabled {
+      color: rgb(179, 179, 179);
+      background: #ffffff;
+    }
+    
+    .LogOutButtonWrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+      margin-bottom: 50px;
+      padding: 2px;
+      width: 100%;
+      height: 40px;
+      background: linear-gradient(90deg, #00c19c 0%, #7077d5 100%);
+    }
+    
+    
