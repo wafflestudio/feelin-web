@@ -40,12 +40,13 @@ const dummyPlaylist = [
   },
   {
     id: 2,
-    playlistName: '삶에 지친 나에게 전하는 따뜻한 발라드',
+    // playlistName: '삶에 지친 나에게 전하는 따뜻한 발라드',
+    playlistName: 'Examples',
     profileImg: "https://github.githubassets.com/images/modules/logos_page/Octocat.png",
     username: 'DJ celette',
     musicNum: 78,
     playtime: 303,
-    text: 'GOOD. BALAD IS GOOD',
+    text: '퇴근길 양화대교의 감성을 가득 담은 플레이리스트입니다. 퇴근할 때 들으면 좋아요. 아니면 코딩할 때 들어도 좋아요!',
     playlistImg: 'https://cdn.pixabay.com/photo/2020/02/04/13/47/looking-4818206_1280.jpg',
     playList: [
       {
@@ -118,7 +119,11 @@ const Post = () => {
     <div className={styles.wrapper}>
       <header className={styles.header}>
         <button className={styles.goBack} onClick={() => { router.back() }}>
-          <Image src={Back} alt='back' width={25} height={25}/>
+          <Image
+          src={Back}
+          alt='back'
+          width={25}
+          height={25}/>
         </button>
       </header>
       <div className={styles.info}>
@@ -144,7 +149,10 @@ const Post = () => {
                 </div>
               </div>
               <div className={styles.playtime}>
-                {post_num ? dummyPlaylist[Number(post_num)].playtime : undefined}분
+                <Image src={musicnote} alt='musicnote' width={20} height={20}/>
+                <div>
+                  {post_num ? dummyPlaylist[Number(post_num)].playtime : undefined}분
+                </div>
               </div>
             </div>
             <div>
@@ -152,8 +160,10 @@ const Post = () => {
             </div>
           </div>
         </div>
-        <div className={styles.infoText}>
-          {post_num ? dummyPlaylist[Number(post_num)].text : undefined}
+        <div className={styles.infoTextWrapper}>
+          <div className={styles.infoText}>
+            {post_num ? dummyPlaylist[Number(post_num)].text : undefined}
+          </div>
         </div>
         <div className={styles.addButtonWrapper}>
           <button className={styles.addButton}>
@@ -161,13 +171,13 @@ const Post = () => {
           </button>
         </div>
       </div>
-        <div className={styles.upperBorder}/>
       <div className={styles.listWrapper}>
         <ul className={styles.listItems}>
           {post_num ? dummyPlaylist[Number(post_num)].playList.map(item => (
             <PlaylistItem key={item.id} item={item} songImg={item.songImg} songTitle={item.songTitle} songSinger={item.songSinger} /> //리스트에 학생 추가
           ))  : undefined}
-          </ul>
+        </ul>
+        <div className={styles.coverScroll}/>
       </div>
         <div className={styles.downBorder}/>
       <footer className={styles.footer}>

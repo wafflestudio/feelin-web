@@ -53,7 +53,7 @@ const Signup = () => {
           .then(response => {
             localStorage.setItem("token", response.data.token);
             setLoading(false);
-            router.push("./");
+            router.push("./index.html");
           })
           .catch((e) => {
             console.log("로그인 에러");
