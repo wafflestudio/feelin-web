@@ -107,7 +107,7 @@ const Login = () => {
             <a>to Main</a>
           </button>
         <p>
-          <b>version 0.0.18</b>
+          <b>version 0.0.19</b>
         </p>
       </form>
       <button className={styles.signup}>
