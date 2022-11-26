@@ -1,28 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  async rewrites() {
-    return [
-      {
-        source: '/melon/:path*',
-        destination: `https://www.melon.com/:path*`,
-      },
-    ];
-  },
 }
 
 module.exports = nextConfig
 
-module.exports = {
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'https://www.melon.com/:path*',
-      },
-    ]
-  },
-}
+// module.exports = {
+//   async rewrites() {
+//     return [
+//       {
+//         source: '/melon/:path*',
+//         destination: 'https://www.melon.com/:path*',
+//       },
+//     ]
+//   },
+// }
 
 module.exports = {
   trailingSlash: true,
