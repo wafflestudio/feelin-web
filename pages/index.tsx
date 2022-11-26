@@ -4,7 +4,7 @@ import Image from "next/image";
 //import styles from "../styles/Home.module.css";
 import styles from './index.module.css';
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 
@@ -16,10 +16,22 @@ const dummyTrack= [
   }
 ]
 
-const Home: NextPage = () => {
+interface Props {
+  userAgent: string
+  header : any
+}
 
+const Home : NextPage<Props> = ({ userAgent,header } : Props) => {
+
+  const floURL = 'https://www.music-flo.com/api/search/v2/search';
+  const melonURL = 'https://www.melon.com/search/song/index.htm';
+  const spotifyURL = 'https://api.spotify.com/v1/tracks/6kLCHFM39wkFjOuyPGLGeQ';
+  const proxy = 'https://cors-anywhere.herokuapp.com'
 
   const router = useRouter();
+
+
+  const [token, SetToken] = useState<string | number | boolean>(0);
 
 
   useEffect(() => {
@@ -31,30 +43,69 @@ const Home: NextPage = () => {
       router.push("./login");
   }
 
-  const melonURL = '';
-
-  const melonSearch= () => {
+  const spotifySearch= () => {
     axios
-      .get(`/melon/search/song/index.htm`, {
+      .get( spotifyURL, {
         params: {
-          startIndex: 1,
-          pageSize: 50,
-          q: dummyTrack[0].title,
-          sort: 'weight',
-          section: 'song',
-        },
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko',
-          'Access-Control-Allow-Origin': '*',
+          keyword: dummyTrack[0].title,
+          searchType: 'TRACK',
+          sortType: 'ACCURACY',
+          size: 100,
+          page: 1,
       },
       })
       .then(response => {
-        console.log(response);
+        console.log(response.data);
       })
       .catch((e) => {
-        console.log("검색 에러");
+        console.log("flo 검색 에러");
       });
   };
+
+  const floSearch= () => {
+    axios
+      .get( floURL, {
+        params: {
+          keyword: dummyTrack[0].title,
+          searchType: 'TRACK',
+          sortType: 'ACCURACY',
+          size: 100,
+          page: 1,
+      },
+      })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log("flo 검색 에러");
+      });
+  };
+
+  const melonSearch= () => {
+    axios.get(proxy + '/' + melonURL, {
+            params: {
+                startIndex: 1,
+                pageSize: 50,
+                q: dummyTrack[0].title,
+                sort: 'weight',
+                section: 'song',
+            },
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+              'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+              Authorization : token,
+          },
+      })
+      .then(response => {
+        console.log(response.data);
+
+      })
+      .catch((e) => {
+        console.log("melon 검색 에러");
+      });
+  };
+
 
 
   return (
@@ -64,12 +115,12 @@ const Home: NextPage = () => {
         <li >main page here</li>
         <hr></hr>
         <li>
-          <Link href="./profile/wafflestudio">
+          <Link href="./profile/0">
             <a>Go to wafflestudio's profile page</a>
           </Link>
         </li>
         <li>
-          <Link href="./profile/flee">
+          <Link href="./profile/1">
             <a>Go to Flee's profile page</a>
           </Link>
         </li>
@@ -107,9 +158,19 @@ const Home: NextPage = () => {
         </li>
         <li>
           <button
+            onClick={floSearch}
+          >
+            flo search API
+          </button>
+          <button
             onClick={melonSearch}
           >
             melon search API
+          </button>
+          <button
+            onClick={spotifySearch}
+          >
+            spotify search API
           </button>
         </li>
       </ul>
@@ -186,5 +247,10 @@ export async function getServerSideProps(context) {
     return { props: { profile } };
   }
 }*/
+
+export const getServerSideProps = ({ req } : any) => {
+  const userAgent = req.headers['user-agent'];
+  return { props: { userAgent, header: req.headers } }
+}
 
 export default Home;
