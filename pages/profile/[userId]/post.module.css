@@ -14,6 +14,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  align-items: center;
 }
 .header{
     position: fixed;
@@ -21,7 +22,7 @@
     flex-direction: row;
     width:100%;
     height: 40px;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     padding: 5%;
     margin-top: 10px;
@@ -32,6 +33,15 @@
   background-color: transparent;
   border: 0px;
 }
+.username{
+  font-weight: 600;
+  font-size: 20px;
+  background-color: transparent;
+}
+.blank{
+  width: 8%;
+  background-color: transparent;
+}
 
 .info{
   position: relative;
@@ -40,20 +50,18 @@
   width: 100%;
   height: calc(30%+30px);
   min-height: 290px;
-  max-height: 360px;
+  max-height: 340px;
   /*border: 1px solid red;*/
-  top: 50px;
+  top: 60px;
   padding: 5% 5% 5% 5%;
-  border-bottom: 2px solid transparent;
+  /*border-bottom: 2px solid transparent;
   border-image: linear-gradient(to right, #00c19c 0%, #7077d5 100%);
-  border-image-slice: 1;
+  border-image-slice: 1;*/
 }
 
 .upperBorder{
   position: relative;
   height: 2px;
-  margin-top: 10px;
-  margin-bottom: 10px;
   top: calc(40% + 40px);
 }
 
@@ -67,12 +75,12 @@
 
 
 .infoMain{
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  position: relative;
-  margin-bottom: 20px;
+  justify-content: flex-start;
+  margin-bottom: 30px;
 }
 
 
@@ -82,24 +90,20 @@
   overflow: hidden;
 }
 
-.infoMainTexts{
-  width: 60%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0px 10px 0px 30px;
+.playlistWrapper :hover{
+  cursor: pointer;
 }
 
+
 .profileImg{
-  width: 120px;
+  width: 110px;
 }
 
 .profileImgWrapper{
   position: relative;
   display: flex;
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   overflow: hidden;
   margin-right: 10px;
@@ -108,16 +112,38 @@
   border: 1px solid #cbcbcb;
 }
 
-.infoMainMiddleSection{
-  flex-direction: column;
+.infoMainRightSection{
   position: relative;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   height: 100%;
-  padding-top: 7%;
+  font-size: 14px;
+  
 }
 
+.bold{
+  font-weight: 800;
+  background-color: transparent;
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+.countInfo{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: 80px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding-left: 25px;
+}
+
+
+/*
 .userName{
   font-weight: 600;
   font-size: 18px;
@@ -142,42 +168,32 @@
   font-size: 12px;
 
 }
-
-.countPosts{
-  position: relative;
-  display: flex;
-  background: linear-gradient(90deg, #00c19c 0%, #7077d5 100%);
-  width: 100px;
-  height: 80px;
-  text-align: center;
-  color: white;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-
-}
-
+*/
 
 /*infoText*/
 
 .infoTextWrapper{
   width: 100%;
   height: 30%;
-  overflow-y: auto;
-
+  margin-bottom: 10px;
 }
 
 .infoName{
+  font-size: 16px;
   font-weight: 700;
   font-family: "Spoqa Han Sans Neo", sans-serif;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .infoText{
+  font-size: 14px;
+  overflow-y: auto;
+  height: 60%;
+  position: relative;
   font-family: "Spoqa Han Sans Neo", sans-serif;
 }
 
-.infoTextWrapper:hover .infoTextCoverScroll {
+.infoText:hover .infoTextCoverScroll {
   opacity: 0;
  -webkit-transition: all .5s;
 }
@@ -191,20 +207,30 @@
   background-color: white;
 }
 
-.infoTextWrapper::-webkit-scrollbar-track{
+.infoText::-webkit-scrollbar-track{
   visibility: hidden;
 }
 
-.infoTextWrapper::-webkit-scrollbar-thumb{
+.infoText::-webkit-scrollbar-thumb{
   background-color: #e9e9e9;
   border-radius: 20px;
 }
 
-.infoTextWrapper::-webkit-scrollbar{
+.infoText::-webkit-scrollbar{
   width: 5px;
   height: 10px;
 }
 
+
+.followButton{
+  color: white;
+  background-color: #3B88fc;
+  border: 0;
+  border-radius: 8px;
+  height: 48px;
+  margin-top: 10px;
+  font-size: 16px;
+}
 
 
 
@@ -213,22 +239,24 @@
 
 .listWrapper{
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
   width: 100%;
-  height: calc(60% - 100px);
+  height: calc(60% - 80px);
   top: 50px;
-  padding-left: 5%;
+  left: 8px;
 }
 
 .listItems{
   display: flex;
   flex-wrap: wrap;
-  position: absolute;
+  justify-content: space-between;
   height: calc(100% - 20px);
   /*border: 1px solid navy;*/
   list-style: none;
   overflow-y: auto;
-  padding: 0px;
-  
+  padding-inline-start: 0%;
 }
 
 .listItems::-webkit-scrollbar{
@@ -237,12 +265,14 @@
 
 .listElm{
   position: relative;
-  align-items: flex-start;
-  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  width: 45%;
-  height: 45%;
-  margin: 2%;
+  width: 48%;
+  height: 58%;
+  margin: 1%;
   /*border: 1px solid cyan;*/
   list-style: none;
 }
@@ -254,16 +284,32 @@
   position: relative;
   overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
+  border-radius: 8px;
+  flex-direction: column;
+  border: 0.1px solid #cecece;
+  padding: 0;
 }
 
 .playlistImg{
   width: 100%;
-  height: 100%;
+  height: 83%;
   display: flex;
+}
+
+.playlistTitle{
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 4%;
+  padding-right: 4%;
+  font-weight: 700;
+  font-size: 13px;
 }
 
 

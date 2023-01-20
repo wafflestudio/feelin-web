@@ -6,11 +6,11 @@ import Back from '../post/[post_num]/images/back.svg';
 import Image from "next/image";
 
 type TSignupForm = {
-  password: string;
-  lastName: string;
-  firstName: string;
-  username: string;
-  phoneNumber: string;
+  password: String;
+  name: String;
+  username: String;
+  countryCode: String;
+  birthDate: String;
 };
 
 const Signup = () => {
@@ -18,10 +18,10 @@ const Signup = () => {
 
   const [input, setInput] = useState<TSignupForm>({
     password: "",
-    lastName: "",
-    firstName: "",
+    name: "",
     username: "",
-    phoneNumber: "",
+    countryCode: "",
+    birthDate: "",
   });
   const [verifyPassword, setVerifyPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -36,17 +36,17 @@ const Signup = () => {
   const handleToSignup = () => {
     setLoading(true);
     axios
-      .post("https://api-feelin.kro.kr/api/v1/auth/user/signup", {
-        email: router.query.email,
-        password: input.password,
-        lastName: input.lastName,
-        firstName: input.firstName,
-        username: input.username,
-        phoneNumber: input.phoneNumber,
+      .post("https://api-feelin.kro.kr/api/v1/auth/signup", {
+        email: "jmsmlove02@naver.com",
+        password: "1234",
+        name: "Jaemin Lee",
+        username: "user4",
+        countryCode: "82",
+        birthDate: "2002-08-27",
       })
       .then(() => {
         axios
-          .post("https://api-feelin.kro.kr/api/v1/auth/user/signin", {
+          .post("https://api-feelin.kro.kr/api/v1/auth/signin", {
             account: router.query.email,
             password: input.password,
           })
@@ -101,7 +101,7 @@ const Signup = () => {
           className={styles.input}
           type={"password"}
           name={"password"}
-          value={input.password}
+          //value={input.password}
           onChange={onChange}
           placeholder={"Password"}
         />
@@ -116,24 +116,14 @@ const Signup = () => {
           placeholder={"Verify Password"}
         />
         <div className={styles.inputName}>
-          Last Name
+          Name
         </div>
         <input
           className={styles.input}
-          name={"lastName"}
-          value={input.lastName}
+          name={"name"}
+          //value={input.name}
           onChange={onChange}
-          placeholder={"Last Name"}
-        />
-        <div className={styles.inputName}>
-          First Name
-        </div>
-        <input
-          className={styles.input}
-          name={"firstName"}
-          value={input.firstName}
-          onChange={onChange}
-          placeholder={"First Name"}
+          placeholder={"name"}
         />
         <div className={styles.inputName}>
           Username
@@ -141,22 +131,32 @@ const Signup = () => {
         <input
           className={styles.input}
           name={"username"}
-          value={input.username}
+          //value={input.username}
           onChange={onChange}
           placeholder={"Username"}
         />
         <div className={styles.inputName}>
-          Phone Number
+          Country Code
         </div>
         <input
           className={styles.input}
-          name={"phoneNumber"}
-          value={input.phoneNumber}
+          name={"countryCode"}
+          //value={input.countryCode}
           onChange={onChange}
-          placeholder={"Phone Number"}
+          placeholder={"Country Code"}
+        />
+        <div className={styles.inputName}>
+          Birth Date
+        </div>
+        <input
+          className={styles.input}
+          name={"birthDate"}
+          //value={input.birthDate}
+          onChange={onChange}
+          placeholder={"Birth Date"}
         />
         <div className={styles.signUpButtonWrapper}>
-          <button disabled={input.password !== verifyPassword} className={styles.signUpButton}>Sign Up</button>
+          <button /*disabled={input.password !== verifyPassword}*/ className={styles.signUpButton}>Sign Up</button>
         </div>
       </form>
 

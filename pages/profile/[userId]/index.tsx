@@ -12,8 +12,87 @@ const dummyProfiles = [
     id : 0,
     username : "wafflestudio",
     image : 'https://image.bugsm.co.kr/album/images/500/40581/4058181.jpg',
-    introduction : "it's wafflestudio here",
+    introduction : "it's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio hereit's wafflestudio here",
     countPosts : 1,
+    following :
+      {
+        "content": [
+            {
+                "id": 1,
+                "username": "admin",
+                "image": ""
+            },
+            {
+                "id": 3,
+                "username": "userB",
+                "image": ""
+            }
+        ],
+        "pageable": {
+            "sort": {
+                "empty": true,
+                "sorted": false,
+                "unsorted": true
+            },
+            "offset": 0,
+            "pageNumber": 0,
+            "pageSize": 30,
+            "paged": true,
+            "unpaged": false
+        },
+        "totalElements": 2,
+        "totalPages": 1,
+        "last": true,
+        "size": 30,
+        "number": 0,
+        "sort": {
+            "empty": true,
+            "sorted": false,
+            "unsorted": true
+        },
+        "numberOfElements": 2,
+        "first": true,
+        "empty": false
+    },
+    followers : {
+      "content": [
+          {
+              "id": 2,
+              "username": "userA",
+              "image": ""
+          },
+          {
+              "id": 3,
+              "username": "userB",
+              "image": ""
+          }
+      ],
+      "pageable": {
+          "sort": {
+              "empty": true,
+              "unsorted": true,
+              "sorted": false
+          },
+          "offset": 0,
+          "pageSize": 30,
+          "pageNumber": 0,
+          "paged": true,
+          "unpaged": false
+      },
+      "totalPages": 1,
+      "totalElements": 2,
+      "last": true,
+      "size": 30,
+      "number": 0,
+      "sort": {
+          "empty": true,
+          "unsorted": true,
+          "sorted": false
+      },
+      "numberOfElements": 2,
+      "first": true,
+      "empty": false
+  }
 },
 {
     id : 1,
@@ -21,6 +100,85 @@ const dummyProfiles = [
     image : 'https://image.bugsm.co.kr/album/images/500/40581/4058181.jpg',
     introduction : "it's flee here",
     countPosts : 1,
+    following :
+      {
+        "content": [
+            {
+                "id": 1,
+                "username": "admin",
+                "image": ""
+            },
+            {
+                "id": 3,
+                "username": "userB",
+                "image": ""
+            }
+        ],
+        "pageable": {
+            "sort": {
+                "empty": true,
+                "sorted": false,
+                "unsorted": true
+            },
+            "offset": 0,
+            "pageNumber": 0,
+            "pageSize": 30,
+            "paged": true,
+            "unpaged": false
+        },
+        "totalElements": 2,
+        "totalPages": 1,
+        "last": true,
+        "size": 30,
+        "number": 0,
+        "sort": {
+            "empty": true,
+            "sorted": false,
+            "unsorted": true
+        },
+        "numberOfElements": 2,
+        "first": true,
+        "empty": false
+    },
+    followers : {
+      "content": [
+          {
+              "id": 2,
+              "username": "userA",
+              "image": ""
+          },
+          {
+              "id": 3,
+              "username": "userB",
+              "image": ""
+          }
+      ],
+      "pageable": {
+          "sort": {
+              "empty": true,
+              "unsorted": true,
+              "sorted": false
+          },
+          "offset": 0,
+          "pageSize": 30,
+          "pageNumber": 0,
+          "paged": true,
+          "unpaged": false
+      },
+      "totalPages": 1,
+      "totalElements": 2,
+      "last": true,
+      "size": 30,
+      "number": 0,
+      "sort": {
+          "empty": true,
+          "unsorted": true,
+          "sorted": false
+      },
+      "numberOfElements": 2,
+      "first": true,
+      "empty": false
+  }
 }]
 
 const dummyUserPosts = [
@@ -28,13 +186,13 @@ const dummyUserPosts = [
     content: [
         {
             id: 0,
-            title: "test post with new playlist0",
+            title: "is this movie? o_0",
             createdAt: "2022-09-29T22:09:44.615901",
             thumbnail: "https://image.bugsm.co.kr/album/images/200/5558/555871.jpg?version=20210316085012.0"
         },
         {
             id: 1,
-            title: "test post with new playlist1",
+            title: "Super long playlist title that takes up two lines",
             createdAt: "2022-09-29T22:09:45.347127",
             thumbnail: "https://cdn.pixabay.com/photo/2020/02/04/13/47/looking-4818206_1280.jpg"
         },
@@ -89,19 +247,19 @@ const dummyUserPosts = [
           id: 0,
           title: "test post with new playlist1",
           createdAt: "2022-09-29T22:09:44.615901",
-          thumbnail: "?/"
+          thumbnail: "https://cdn.pixabay.com/photo/2020/02/04/13/47/looking-4818206_1280.jpg"
       },
       {
           id: 1,
           title: "test post with new playlist2",
           createdAt: "2022-09-29T22:09:45.347127",
-          thumbnail: "?/"
+          thumbnail: "https://cdn.pixabay.com/photo/2020/02/04/13/47/looking-4818206_1280.jpg"
       },
       {
           id: 2,
           title: "test post with new playlist3",
           createdAt: "2022-09-29T22:09:46.233144",
-          thumbnail: "?/"
+          thumbnail: "https://cdn.pixabay.com/photo/2020/02/04/13/47/looking-4818206_1280.jpg"
       }
   ],
   pageable: {
@@ -141,6 +299,10 @@ const Profile = () => {
   
   //const songList = dummyPlaylist[Number(post_num)].playList;
 
+  const handlePlaylistClick = (id : Number) => {
+    router.push(`../../post/${id}`);
+  }
+
 
   return (
     <div className={styles.wrapper}>
@@ -152,16 +314,17 @@ const Profile = () => {
           width={25}
           height={25}/>
         </button>
+        <div className={styles.username}>
+          {userId ? dummyProfiles[Number(userId)].username : undefined}
+        </div>
+        <div className={styles.blank}/>
       </header>
       <div className={styles.info}>
         <div className={styles.infoMain}>
           <div className={styles.profileImgWrapper}>
             <img className={styles.profileImg} src={userId ? dummyProfiles[Number(userId)].image: undefined} alt="profileImg"/>
           </div>
-          <div className={styles.infoMainMiddleSection}>
-            <div className={styles.userName}>
-              {userId ? dummyProfiles[Number(userId)].username : undefined}              
-            </div>
+          {/*<div className={styles.infoMainMiddleSection}>
             <ul className={styles.profileGenreList}>
               <li className={styles.profileGenre}>
                 R&B
@@ -170,12 +333,25 @@ const Profile = () => {
                 HipHop
               </li>
             </ul>
-          </div>
+          </div>*/}
           <div className={styles.infoMainRightSection}>
-            <div className={styles.countPosts}>
-              {userId ? dummyProfiles[Number(userId)].countPosts : undefined}
-              <br/>
-              playlists
+            <div className={styles.countInfo}>
+              <text className={styles.bold}>
+                {userId ? dummyProfiles[Number(userId)].countPosts : undefined}
+              </text>
+              Posts
+            </div>
+            <div className={styles.countInfo}>
+              <text className={styles.bold}>
+                {userId ? dummyProfiles[Number(userId)].followers.content.length : undefined}
+              </text>
+              Followers
+            </div>
+            <div className={styles.countInfo}>
+              <text className={styles.bold}>
+                {userId ? dummyProfiles[Number(userId)].following.content.length : undefined}
+              </text>
+              Following
             </div>
           </div>
         </div>
@@ -187,13 +363,19 @@ const Profile = () => {
             {userId ? dummyProfiles[Number(userId)].introduction : undefined}
           </div>
         </div>
+        <button className={styles.followButton}>
+          Follow
+        </button>
       </div>
       <div className={styles.listWrapper}>
         <ul className={styles.listItems}>
           {userId ? dummyUserPosts[Number(userId)].content.map(item => (
             <li className={styles.listElm}>
-              <div className={styles.playlistWrapper}>
+              <div className={styles.playlistWrapper} onClick={()=> {handlePlaylistClick(item.id)}}>
                 <img className={styles.playlistImg} src={userId ? item.thumbnail: undefined} alt="playlistImg"/>
+                <div className={styles.playlistTitle}>
+                  {userId ? item.title : undefined}
+                </div>
               </div>
             </li> //리스트에 플레이리스트 커버 추가
           ))  : undefined}
