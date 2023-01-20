@@ -8,9 +8,10 @@
     <script type='text/javascript'>
       function sendToFlutter() {
           if (flutterChannel) {
-              flutterChannel.postMessage(localStorage.getItem("token"));
+              flutterChannel.postMessage(JSON.parse(localStorage.getItem("searchResults")));
+              localStorage.removeItem("searchResults");
           }
-          console.log(localStorage.getItem("token"));
+          console.log(JSON.parse(localStorage.getItem("searchResults")));
         }
         window.onload = sendToFlutter;
       </script>

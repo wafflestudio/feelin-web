@@ -6,14 +6,73 @@ import styles from './index.module.css';
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { access } from "fs";
+import { stringify } from "querystring";
 
-const dummyTrack= [
+
+axios.defaults.baseURL = 'https://api-feelin.kro.kr/api/v1';
+//axios.defaults.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+const access_token = 'BQAooJtA7WhfAOP_1hL-flxf3s9j9_SHnPqBwZIcGbCvxuGqidhOC7yFkoHc70oAlS__o9-g129pPzusORgoaFxxFga4Qvji-esvOhApeNWk-bnNmN8BmCXnAh_I3wBSrSU_wYmSozAqRc0ATQZtyR0fmoSgQtQocbY0kD4XB9MNZoMn6_5esg91GM2koqa5MydotJ-BUIVP';
+
+export interface Track {
+  id: number;
+  title : String;
+  artists: Artist[];
+  album: Album;
+}
+
+export interface Artist {
+  id : number;
+  name : String;
+}
+
+export interface Album {
+  id : number;
+  title : String;
+  thumbnail : String;
+}
+
+export interface UserDataJSON {
+  id : String;
+}
+
+const dummyUserData : UserDataJSON =
   {
-    id:1,
-    title:'love',
-
+    id : '0'
   }
+
+const dummyTrack : Track[] = [
+  {
+    id : 1,
+    title : 'love',
+    artists : [
+      {
+        id : 1,
+        name : '브라운아이드걸스',
+      },
+    ],
+    album : {
+      id : 1,
+      title : 'Love',
+      thumbnail : ''
+    }
+  },
+  {
+    id : 2,
+    title : 'love1',
+    artists : [
+      {
+        id : 3,
+        name : '브라운아이드걸스1',
+      },
+    ],
+    album : {
+      id : 2,
+      title : 'Love1',
+      thumbnail : ''
+    }
+  },
 ]
 
 interface Props {
@@ -25,8 +84,8 @@ const Home : NextPage<Props> = ({ userAgent,header } : Props) => {
 
   const floURL = 'https://www.music-flo.com/api/search/v2/search';
   const melonURL = 'https://www.melon.com/search/song/index.htm';
-  const spotifyURL = 'https://api.spotify.com/v1/tracks/6kLCHFM39wkFjOuyPGLGeQ';
-  const proxy = 'https://cors-anywhere.herokuapp.com'
+  const spotifyURL = 'https://api.spotify.com/v1';
+  const proxy = 'https://herokufeelin.herokuapp.com'
 
   const router = useRouter();
 
@@ -43,49 +102,261 @@ const Home : NextPage<Props> = ({ userAgent,header } : Props) => {
       router.push("./login");
   }
 
-  const spotifySearch= () => {
+  //const imgUrl = "https://is5-ssl.mzstatic.com/image/thumb/Music112/v4/3e/04/eb/3e04ebf6-370f-f59d-ec84-2c2643db92f1/196626945068.jpg/{w}x{h}bb.jpg";
+  const propertyAdder = (tracks: Track[], weight: Number, height: Number) => {
+    const addTracks = tracks.map((item) => ({...item, types: "songs"}))
+    console.log(addTracks);
+    return addTracks;
+  }
+
+  const spotifyTrackSearch= (id : String) => {
     axios
-      .get( spotifyURL, {
-        params: {
-          keyword: dummyTrack[0].title,
-          searchType: 'TRACK',
-          sortType: 'ACCURACY',
-          size: 100,
-          page: 1,
+      .get( spotifyURL + '/tracks/' + id, {
+        headers: {
+          'Authorization' : `Bearer ${access_token}`,
+          'Content-Type' : 'application/json'
       },
       })
       .then(response => {
         console.log(response.data);
+        const trackList = response.data?.tracks?.items?.map((track : any) => {
+          const artists = track?.artists?.map((artist : any) => ({
+              vendor: 'spotify',
+              id: artist?.id,
+              name: artist?.name,
+          }));
+          return {
+              vendor: 'spotify',
+              title: track?.name,
+              id: track?.id,
+              artists: artists,
+              album: {
+                  vendor: 'spotify',
+                  title: track?.album?.name,
+                  id: track?.album?.id,
+                  coverUrl: track?.album?.images[0].url,
+              },
+          };
+      });
+      console.log(trackList);
+        
       })
       .catch((e) => {
-        console.log("flo 검색 에러");
+        console.log("spotify 검색 에러");
       });
   };
 
-  const floSearch= () => {
+
+  const spotifyRecentTrackSearch= () => {
     axios
-      .get( floURL, {
-        params: {
-          keyword: dummyTrack[0].title,
-          searchType: 'TRACK',
-          sortType: 'ACCURACY',
-          size: 100,
-          page: 1,
+      .get( spotifyURL + '/me/player/recently-played', {
+        headers: {
+          'Authorization' : `Bearer ${access_token}`,
+          'Content-Type' : 'application/json'
       },
       })
       .then(response => {
         console.log(response.data);
+        const recentTrackList = response.data?.items?.map((track : any) => {
+          const artists = track.track.artists.map((artist: any) => ({
+              vendor: 'spotify',
+              id: artist.id,
+              name: artist.name,
+          }));
+          const recentAlbum = track.track.album;
+          return {
+              vendor: 'spotify',
+              title: track.track.name,
+              id: track.track.id,
+              artists: artists,
+              album: {
+                  vendor: 'spotify',
+                  id: recentAlbum.id,
+                  title: recentAlbum.name,
+                  coverUrl: recentAlbum.images[0].url,
+              },
+          };
+      });
+      console.log(recentTrackList)
       })
       .catch((e) => {
-        console.log("flo 검색 에러");
+        console.log("spotify 최근 들은 트랙 검색 에러");
       });
   };
+
+  const spotifySearch= (query : String) => {
+    axios
+      .get( spotifyURL + '/search', {
+        params:{
+          'q' : query,
+          'type' : 'track',
+          'include_external' : 'audio',
+          'limit' : 30,
+          'offset' : 0
+        },
+        headers: {
+          'Authorization' : `Bearer ${access_token}`,
+          'Content-Type' : 'application/json'
+      },
+      })
+      .then(response => {
+        console.log(response.data);
+        const trackList = response.data?.tracks?.items?.map((track : any) => {
+          const artists = track?.artists?.map((artist : any) => ({
+              vendor: 'spotify',
+              id: artist?.id,
+              name: artist?.name,
+          }));
+          return {
+              vendor: 'spotify',
+              title: track?.name,
+              id: track?.id,
+              artists: artists,
+              album: {
+                  vendor: 'spotify',
+                  title: track?.album?.name,
+                  id: track?.album?.id,
+                  coverUrl: track?.album?.images[0].url,
+              },
+          };
+      });
+      console.log(trackList);
+      })
+      .catch((e) => {
+        console.log("spotify 검색 에러");
+      });
+  };
+
+  
+  const spotifyGetUser= () : any => {
+    axios.get(spotifyURL + '/me', {
+        headers: {
+          'Authorization' : `Bearer ${access_token}`,
+          'Content-Type' : 'application/json'
+      },
+      })
+      .then(response => {
+        console.log(response.data);
+        console.log(response.data.id);
+        return response.data;
+      })
+      .catch((e) => {
+        console.log("spotify 유저 정보 가져오기 에러");
+        return 0;
+      });
+  };
+
+  const spotifySavePlaylist= (playlistName : String, playlistDescription : String ) => {
+    axios
+      .post( 'https://api.spotify.com/v1/users/31ejtgomu2ablytdg2r4utgvnqwu/playlists',
+       {
+        'name' : '1',
+        'description' : 'It is description'
+      }, {
+        headers: {
+        'Authorization' : `Bearer ${access_token}`,
+        'Content-Type' : 'application/json'
+      },
+    }
+      )
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log("spotify 플레이리스트 생성 에러");
+      });
+  };
+
+  const spotifyAddTracksToPlaylist= (urisList : String[] ) => {
+    axios
+      .post( 'https://api.spotify.com/v1/playlists/4ht1zod9nfEhscV7tVtdkd/tracks',
+       null, {
+      params:{
+        'uris' : '' + urisList.map((id) => 'spotify:track:'+id)
+      },
+        headers: {
+        'Authorization' : `Bearer ${access_token}`,
+        'Content-Type' : 'application/json'
+      },
+    }
+      )
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log("spotify 플레이리스트에 트랙 추가 에러");
+      });
+  };
+
+  const spotifyGetPlaylists= () => {
+    axios
+      .get( 'https://api.spotify.com/v1/users/31ejtgomu2ablytdg2r4utgvnqwu/playlists',
+       {
+        headers: {
+        'Authorization' : `Bearer ${access_token}`,
+        'Content-Type' : 'application/json'
+      },
+    }
+      )
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log("spotify 플레이리스트 생성 에러");
+      });
+  };
+
+  const spotifyGetPlaylistItems= (playlistId : String) => {
+    axios
+      .get( `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+       {
+        headers: {
+        'Authorization' : `Bearer ${access_token}`,
+        'Content-Type' : 'application/json'
+      },
+    }
+      )
+      .then(response => {
+        console.log(response.data);
+        const playlistData = response.data?.items;
+        const trackList : Track[] = playlistData?.map((item : any) => ({
+          vendor: 'spotify',
+          title: item?.track?.name,
+          id : item?.track?.id,
+          artists: item?.track?.artists?.map((artist : any) => ({ vendor: 'spotify', id : artist.id, name : artist.name })),
+          album: {
+            vendor: 'spotify',
+            title: item?.track?.album?.name,
+            id: item?.track?.album?.id,
+            coverUrl: item?.track.album?.images[0].url
+        }
+      }));
+        console.log(trackList);
+      })
+      .catch((e) => {
+        console.log("spotify 플레이리스트 생성 에러");
+      });
+  };
+
+
+  const appleMusicUserToken = () => {
+    router.push('./search/applemusic');
+  }
+
+  const authUrl = 'https://accounts.spotify.com/api/token';
+
+
+  const floSearch = () => {
+    router.push('./search/flo');
+  }
+  
+
 
   const melonSearch= () => {
     axios.get(proxy + '/' + melonURL, {
             params: {
                 startIndex: 1,
-                pageSize: 50,
+                pageSize: 10,
                 q: dummyTrack[0].title,
                 sort: 'weight',
                 section: 'song',
@@ -105,6 +376,7 @@ const Home : NextPage<Props> = ({ userAgent,header } : Props) => {
         console.log("melon 검색 에러");
       });
   };
+
 
 
 
@@ -157,6 +429,11 @@ const Home : NextPage<Props> = ({ userAgent,header } : Props) => {
           </button>
         </li>
         <li>
+          <button onClick={()=> appleMusicUserToken()}>
+            appleMusic user token
+          </button>
+        </li>
+        <li>
           <button
             onClick={floSearch}
           >
@@ -168,10 +445,56 @@ const Home : NextPage<Props> = ({ userAgent,header } : Props) => {
             melon search API
           </button>
           <button
-            onClick={spotifySearch}
+            onClick={()=> spotifyTrackSearch('11dFghVXANMlKmJXsNCbNl')}
+          >
+            spotify track API
+          </button>
+          <button
+            onClick={()=> spotifySearch('Love')}
           >
             spotify search API
           </button>
+          <button
+            onClick={()=> spotifyRecentTrackSearch()}
+          >
+            spotify recent track search API
+          </button>
+          <button
+            onClick={()=> spotifyGetUser()}
+          >
+            spotify get User API
+          </button>
+          <button
+            onClick={()=> spotifySavePlaylist('newPlaylist', 'It is new playlist')}
+          >
+            spotify savePlaylist API
+          </button>
+          <button
+            onClick={()=> spotifyAddTracksToPlaylist(['4iV5W9uYEdYUVa79Axb7Rh','1301WleyT98MSxVHPZCA6M'])}
+          >
+            spotify add tracks to playlist API
+          </button>
+          <button
+            onClick={()=> spotifyGetPlaylists()}
+          >
+            spotify getPlaylists API
+          </button>
+          <button
+            onClick={()=> spotifyGetPlaylistItems('2rWwFhYrFQM8czyYJQH5ff')}
+          >
+            spotify get Playlist Items API
+          </button>
+          
+          {/*<button
+            onClick={()=> TransferListToString(['4iV5W9uYEdYUVa79Axb7Rh','1301WleyT98MSxVHPZCA6M'])}
+          >
+            transfer list to string
+          </button>
+          <button
+            onClick={()=> spotifyAuth('abfe2ffcd6564d8f8d2274044640514c', '83f348e36a5c4d648bee6d3260cab052')}
+          >
+            spotify login API
+          </button>*/}
         </li>
       </ul>
       

@@ -20,7 +20,7 @@ const EmailVerify = () => {
     setVerified(false);
     setSendingEmail(true);
     axios
-      .post("https://api-feelin.kro.kr/api/v1/auth/user", {
+      .post("https://api-feelin.kro.kr/api/v1/auth", {
         email: email,
       })
       .then(() => {
@@ -37,7 +37,7 @@ const EmailVerify = () => {
   const verifyCode = () => {
     setAuthenticating(true);
     axios
-      .post("https://api-feelin.kro.kr/api/v1/auth/user/verify-code", {
+      .post("https://api-feelin.kro.kr/api/v1/auth/verify-code", {
         email: verifiedEmail,
         code: code,
       })
