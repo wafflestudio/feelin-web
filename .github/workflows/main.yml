@@ -1,36 +1,43 @@
-# This is a basic workflow to help you get started with Actions
+name: Deploy to Amazon ECR
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ develop ]
+    branches:
+      - main  # main 브랜치에 push할 때
   pull_request:
-    branches: [ develop ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+    branches:
+      - main  # main 브랜치에 PR할 때 실행한다.
+env: # 사용할 env	
+  AWS_REGION: ap-northeast-2
+  ECR_REGISTRY: 405906814034.dkr.ecr.ap-northeast-2.amazonaws.com
+  ECR_REPOSITORY: feelin-dev/feelin-web
+jobs:	
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
+    environment: production
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Configure AWS credentials	# AWS 로그인
+        uses: aws-actions/configure-aws-credentials@v1
+        with:	# AWS 로그인에 필요한 정보들. 얘네는 Github Secret에 설정해야 한다.
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Login to Amazon ECR # ECR에도 로그인
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push image to Amazon ECR # 이미지 빌드하고 ECR push
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+       # 아래처럼 docker 커맨드를 실행한다.
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:latest"
