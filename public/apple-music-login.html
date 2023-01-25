@@ -13,7 +13,7 @@
       function configureLibrary() {
           let music = MusicKit.getInstance();
           music.authorize().then(function(result) {
-            postMessage(result);
+            flutterChannel.postMessage(result);
           })
         }
         window.onload = configureLibrary;
