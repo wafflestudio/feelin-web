@@ -1,14 +1,9 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-//import styles from "../styles/Home.module.css";
 import styles from './index.module.css';
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import axios, { AxiosResponse } from "axios";
-import { access } from "fs";
-import { stringify } from "querystring";
+import axios from "axios";
 
 
 axios.defaults.baseURL = 'https://api-feelin.kro.kr/api/v1';
