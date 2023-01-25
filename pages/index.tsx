@@ -479,17 +479,6 @@ const Home : NextPage<Props> = ({ userAgent,header } : Props) => {
           >
             spotify get Playlist Items API
           </button>
-          
-          {/*<button
-            onClick={()=> TransferListToString(['4iV5W9uYEdYUVa79Axb7Rh','1301WleyT98MSxVHPZCA6M'])}
-          >
-            transfer list to string
-          </button>
-          <button
-            onClick={()=> spotifyAuth('abfe2ffcd6564d8f8d2274044640514c', '83f348e36a5c4d648bee6d3260cab052')}
-          >
-            spotify login API
-          </button>*/}
         </li>
       </ul>
       
