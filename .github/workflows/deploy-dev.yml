@@ -2,11 +2,9 @@ name: deploy-dev
 
 on:
   push:
-    branches:
-      - main  # main 브랜치에 push할 때
+    branches: [main]  # main 브랜치에 push할 때
   pull_request:
-    branches:
-      - main  # main 브랜치에 PR할 때 실행한다.
+    branches: [main]  # main 브랜치에 PR할 때 실행한다.
 
 jobs:
   deploy:
