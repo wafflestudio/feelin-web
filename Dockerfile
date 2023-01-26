@@ -10,7 +10,6 @@ RUN yarn
 RUN yarn build
 
 RUN echo "YARN VERSION IN RUNNER: " && yarn --version
-USER nextjs
 EXPOSE 3000
 ENV NEXT_TELEMETRY_DISABLED 1
 CMD ["yarn", "start"]
