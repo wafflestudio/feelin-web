@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import styles from './index.module.css';
 import Image from "next/image";
 import Slider from "react-slick"
+import React from 'react';
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import styled from "styled-components";
@@ -43,25 +44,25 @@ const Guide=()=>{
 
     return(
       <Wrap className={styles.wrapper}>
-      <Slider {...settings} className={styles.slider}>
-        {vendor==='applemusic' ? 
-        applemusicGuideImages.map((image) => {
-          return <Image
+        <Slider {...settings} className={styles.slider}>
+          {vendor==='applemusic' ? 
+          applemusicGuideImages.map((image) => {
+            return <Image
+              src={image}
+              alt='applemusicGuideImage'/>
+          })
+          : vendor==='spotify' ?
+          spotifyGuideImages.map((image) => {
+            return <Image
             src={image}
-            alt='applemusicGuideImage'/>
-        })
-        : vendor==='spotify' ?
-        spotifyGuideImages.map((image) => {
-          return <Image
-          src={image}
-          alt='spotifyGuideImage'/>
-        })
-        :
-        <div>
-          No Guide for this streaming service
-        </div>
-        }
-      </Slider>
+            alt='spotifyGuideImage'/>
+          })
+          :
+          <div>
+            No Guide for this streaming service
+          </div>
+          }
+        </Slider>
       </Wrap>
     )
 }

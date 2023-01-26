@@ -6,6 +6,7 @@ import PlaylistItem from "./playlistItem";
 import Back from './images/back.svg';
 import Image from "next/image";
 import musicnote from "../../../public/musicnote.png";
+import React from 'react';
 
 const dummyPlaylist = [
   {

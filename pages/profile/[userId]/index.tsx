@@ -4,8 +4,7 @@ import styles from './post.module.css';
 import { ChangeEvent, FormEvent, useState } from "react";
 import Back from '../../post/[post_num]/images/back.svg';
 import Image from "next/image";
-import musicnote from "../../../public/musicnote.png";
-import { profile } from "console";
+import React from 'react';
 
 const dummyProfiles = [
 {

@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
 import Back from '../post/[post_num]/images/back.svg';
 import Image from "next/image";
+import React from "react";
 
 type TSignupForm = {
   password: String;

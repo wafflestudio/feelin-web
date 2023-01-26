@@ -1,9 +1,5 @@
-import type { NextPage } from "next";
-import Image from "next/image";
-//import styles from "../styles/Home.module.css";
-import styles from './index.module.css';
 import { useEffect, useState } from "react";
-import router, { useRouter } from "next/router";
+import React from "react";
 import axios from "axios";
 
 axios.defaults.baseURL = 'https://api-feelin.kro.kr/api/v1';
