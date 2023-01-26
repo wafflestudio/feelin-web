@@ -1,0 +1,25 @@
+.wrapper {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 280px;
+  max-width: 450px;
+  height: 100%;
+  border: solid #e9e9e9;
+  border-width: 0 1px;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: flex-start;
+  align-items: center;
+  background: white;
+}
+
+.slider{
+  width: 80%;
+  height: fit-content;
+  display: flex;
+}
