@@ -16,7 +16,9 @@
             flutterChannel.postMessage(result);
           })
         }
-        window.onload = configureLibrary;
+        window.addEventListener('DOMContentLoaded', function(){
+          configureLibrary
+        })
       </script>
   </head>
   <body>

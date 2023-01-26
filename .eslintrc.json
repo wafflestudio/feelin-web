@@ -23,7 +23,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "prettier"],
+  "plugins": ["react", "react-hooks", "prettier", "@babel"],
   "rules": {
     "react/react-in-jsx-scope": 0,
     "react/prefer-stateless-function": 0,
@@ -33,5 +33,6 @@
   },
   "globals": {
     "React": "writable"
-  }
+  },
+  "root": true
 }
