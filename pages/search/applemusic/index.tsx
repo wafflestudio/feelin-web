@@ -7,7 +7,7 @@ import axios from "axios";
 const Applemusic = () => {
 
   useEffect(() => {
-    router.push('../../applemusic.html')
+    router.push('../../apple-music-login.html')
   },[]);
 
 

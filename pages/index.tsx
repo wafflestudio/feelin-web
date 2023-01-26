@@ -335,44 +335,20 @@ const Home : NextPage<Props> = ({ userAgent,header } : Props) => {
 
 
   const appleMusicUserToken = () => {
-    router.push('./search/applemusic');
+    router.push('./apple-music-login.html');
   }
-
-  const authUrl = 'https://accounts.spotify.com/api/token';
-
-
-  const floSearch = () => {
-    router.push('./search/flo');
+  const appleMusicGuide = () => {
+    router.push('./guide/applemusic');
   }
-  
-
-
-  const melonSearch= () => {
-    axios.get(proxy + '/' + melonURL, {
-            params: {
-                startIndex: 1,
-                pageSize: 10,
-                q: dummyTrack[0].title,
-                sort: 'weight',
-                section: 'song',
-            },
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-              'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-              Authorization : token,
-          },
-      })
-      .then(response => {
-        console.log(response.data);
-
-      })
-      .catch((e) => {
-        console.log("melon 검색 에러");
-      });
-  };
-
-
+  const spotifyGuide = () => {
+    router.push('./guide/spotify');
+  }
+  const privacyPolicy = () => {
+    router.push('./privacy-policy.html');
+  }
+  const termsOfUse = () => {
+    router.push('./terms-of-use.html');
+  }
 
 
   return (
@@ -402,18 +378,8 @@ const Home : NextPage<Props> = ({ userAgent,header } : Props) => {
           </Link>
         </li>
         <li>
-          <Link href="./notification">
-            <a>Go to notification page</a>
-          </Link>
-        </li>
-        <li>
           <Link href="./setting">
             <a>Go to setting page</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="./write">
-            <a>Write your post</a>
           </Link>
         </li>
         <li>
@@ -425,59 +391,27 @@ const Home : NextPage<Props> = ({ userAgent,header } : Props) => {
         </li>
         <li>
           <button onClick={()=> appleMusicUserToken()}>
-            appleMusic user token
+            get appleMusic user token
           </button>
         </li>
         <li>
-          <button
-            onClick={floSearch}
-          >
-            flo search API
+          <button onClick={()=> appleMusicGuide()}>
+            Guide : get applemusic playlist link 
           </button>
-          <button
-            onClick={melonSearch}
-          >
-            melon search API
+        </li>
+        <li>
+          <button onClick={()=> spotifyGuide()}>
+            Guide : get spotify playlist link 
           </button>
-          <button
-            onClick={()=> spotifyTrackSearch('11dFghVXANMlKmJXsNCbNl')}
-          >
-            spotify track API
+        </li>
+        <li>
+          <button onClick={()=> privacyPolicy()}>
+            Privacy Policy
           </button>
-          <button
-            onClick={()=> spotifySearch('Love')}
-          >
-            spotify search API
-          </button>
-          <button
-            onClick={()=> spotifyRecentTrackSearch()}
-          >
-            spotify recent track search API
-          </button>
-          <button
-            onClick={()=> spotifyGetUser()}
-          >
-            spotify get User API
-          </button>
-          <button
-            onClick={()=> spotifySavePlaylist('newPlaylist', 'It is new playlist')}
-          >
-            spotify savePlaylist API
-          </button>
-          <button
-            onClick={()=> spotifyAddTracksToPlaylist(['4iV5W9uYEdYUVa79Axb7Rh','1301WleyT98MSxVHPZCA6M'])}
-          >
-            spotify add tracks to playlist API
-          </button>
-          <button
-            onClick={()=> spotifyGetPlaylists()}
-          >
-            spotify getPlaylists API
-          </button>
-          <button
-            onClick={()=> spotifyGetPlaylistItems('2rWwFhYrFQM8czyYJQH5ff')}
-          >
-            spotify get Playlist Items API
+        </li>
+        <li>
+          <button onClick={()=> termsOfUse()}>
+            Terms of Use
           </button>
         </li>
       </ul>
@@ -515,45 +449,6 @@ const Home : NextPage<Props> = ({ userAgent,header } : Props) => {
     </div>
   );
 };
-
-/*
-export async function getServerSideProps(context) {
-  
-  //context는 자바스크립트 오브젝트인데 여기 유용한게 많이 들어 있습니다. 공식문서 보시면 자세히 설명되어 있습니다.
-  
-  //아래 코드는 쿠키를 빼서 쓰는 모습입니다.
-  const cookie = context.req ? context.req.headers.cookie : "";
-  
-  const token = tokenFromCookie(cookie);//쿠키에서 토큰만 빼는 함수가 위에 어디 있습니다.
-  
-  //이것은 그냥 데이터를 위한 API 엔드포인트입니다.
-  const userProfileEndpoint = endpointMania("/api/user/profile");
-  
-  //자유롭게 자바스크립트 코드를 이용해서 데이터를 가져와서 지지고 볶고 할 수 있습니다.
-  if (token === "") {
-    const profile = { success: false, token: "없음" };
-    return { props: { profile } };
-  }
-  try {
-      //저는 그냥 fetch를 썼는데 axios를 써도 상관 없습니다.
-    const res = await fetch(userProfileEndpoint, {
-      method: "GET",
-      headers: {
-        Authorization: token,
-      },
-    });
-    const profile = await res.json();
-    return {
-      props: {
-        profile,
-      },
-    };
-  } catch (e) {
-    console.log(e);
-    const profile = { success: false };
-    return { props: { profile } };
-  }
-}*/
 
 export const getServerSideProps = ({ req } : any) => {
   const userAgent = req.headers['user-agent'];
