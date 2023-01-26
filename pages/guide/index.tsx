@@ -1,29 +1,12 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from './index.module.css';
-import { ChangeEvent, FormEvent, useState } from "react";
 import Back from '../post/[post_num]/images/back.svg';
 import Image from "next/image";
-import axios from "axios";
 import Slider from "react-slick"
 
 const Guide=()=>{
     const router = useRouter();
 
-
-    const handleLogOut = () => {
-        axios
-          .post("https://api-feelin.kro.kr/api/v1/auth/user/signout", {
-
-          })
-          .then(response => {
-            console.log("로그아웃 성공");
-            router.push('./');
-          })
-          .catch((e) => {
-            console.log("로그아웃 에러");
-          });
-      };
 
     return(
     <div className={styles.wrapper}>
