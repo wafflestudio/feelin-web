@@ -1,13 +1,13 @@
 import styles from './index.module.css';
-import { useEffect, useState } from "react";
-import router, { useRouter } from "next/router";
-import axios from "axios";
+import { useEffect} from "react";
+import router from "next/router";
+import React from 'react';
 
 
 const Applemusic = () => {
 
   useEffect(() => {
-    router.push('../../applemusic.html')
+    router.push('../../apple-music-login.html')
   },[]);
 
 

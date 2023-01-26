@@ -3,8 +3,7 @@ import styles from "./index.module.css";
 import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
-import Post from "../post/[post_num]";
-import Head from "next/head";
+import React from 'react';
 
 type TLoginForm = {
   username: string;

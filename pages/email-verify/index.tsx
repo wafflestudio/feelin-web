@@ -1,10 +1,10 @@
 import styles from "./index.module.css";
 import { useRouter } from "next/router";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import Link from "next/link";
 import Image from "next/image";
 import Back from '../post/[post_num]/images/back.svg';
+import React from "react";
 
 const EmailVerify = () => {
   const [sendingEmail, setSendingEmail] = useState<boolean>(false);

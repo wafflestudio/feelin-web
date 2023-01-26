@@ -1,10 +1,9 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from './index.module.css';
-import { ChangeEvent, FormEvent, useState } from "react";
 import Back from '../post/[post_num]/images/back.svg';
 import Image from "next/image";
 import axios from "axios";
+import React from "react";
 
 const Setting=()=>{
     const router = useRouter();

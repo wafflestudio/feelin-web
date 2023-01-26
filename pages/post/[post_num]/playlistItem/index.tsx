@@ -1,7 +1,5 @@
-import { useRouter } from "next/router";
 import styles from './playlistItem.module.css';
-import { ChangeEvent, FormEvent, useState } from "react";
-import Link from "next/link";
+import React from 'react';
 
 interface Props {
     //loadNext: boolean;
