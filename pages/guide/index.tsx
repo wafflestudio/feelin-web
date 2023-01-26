@@ -37,95 +37,13 @@ const Guide=()=>{
                 width={20}
                 height={20}/>
             </button>
-            <div className={styles.headerName}>Setting</div>
+            <div className={styles.headerName}>Guide</div>
         </header>
         <div className={styles.border}/>
         <div className={styles.settingMainWrapper}>
             <Slider>
-                
+
             </Slider>
-          
-            <button className={styles.SettingButton}>
-                알림
-                <div className={styles.goIn}>
-                    <Image
-                    alt="goBack"
-                    src={Back}
-                    width={20}
-                    height={20}/>
-                </div>
-            </button>
-            <button className={styles.SettingButton}>
-                개인정보
-                <div className={styles.goIn}>
-                    <Image
-                    alt="goBack"
-                    src={Back}
-                    width={20}
-                    height={20}/>
-                </div>
-            </button>
-            <button className={styles.SettingButton}>
-                보안
-                <div className={styles.goIn}>
-                    <Image
-                    alt="goBack"
-                    src={Back}
-                    width={20}
-                    height={20}/>
-                </div>
-            </button>
-            <button className={styles.SettingButton}>
-                계정
-                <div className={styles.goIn}>
-                    <Image
-                    alt="goBack"
-                    src={Back}
-                    width={20}
-                    height={20}/>
-                </div>
-            </button>
-            <button className={styles.SettingButton}>
-                도움말
-                <div className={styles.goIn}>
-                    <Image
-                    alt="goBack"
-                    src={Back}
-                    width={20}
-                    height={20}/>
-                </div>
-            </button>
-            <button className={styles.SettingButton}>
-                소개
-                <div className={styles.goIn}>
-                    <Image
-                    alt="goBack"
-                    src={Back}
-                    width={20}
-                    height={20}/>
-                </div>
-            </button>
-            <button className={styles.SettingButton}>
-                스트리밍 서비스 계정 연동
-                <div className={styles.goIn}>
-                    <Image
-                    alt="goBack"
-                    src={Back}
-                    width={20}
-                    height={20}/>
-                </div>
-            </button>
-            <button className={styles.LogOutButton} onClick={handleLogOut}>
-                LogOut $ID
-                <div className={styles.goIn}>
-                    <Image
-                    alt="goBack"
-                    src={Back}
-                    width={20}
-                    height={20}/>
-                </div>
-            </button>
-      
     </div>
       <style jsx>{`
       input {
