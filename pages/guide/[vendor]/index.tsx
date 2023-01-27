@@ -43,7 +43,7 @@ const Guide=()=>{
     const StyledSlider = styled(Slider)`
       height: fit-content;
       .slick-list {
-        width: 600px;
+        width: 100%;
         height: fit-content;
         display: flex;
         flex-direction: column;
@@ -52,13 +52,15 @@ const Guide=()=>{
         position: relative;
         display: flex;
         width: 100%;
-        height: 100%;
+        height: fit-content;
       }
       .slick-slide {
         position: relative;
         display: flex;
         width: 100%;
-        height: 100%;
+        height: fit-content;
+        padding-left: 10%;
+        padding-right: 10%;
       }
       `
 
