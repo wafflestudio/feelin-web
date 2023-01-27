@@ -1,7 +1,7 @@
 # Builder
 FROM node:18-alpine
 ARG APP_ENV
-ENV NODE_ENV production
+ENV NODE_ENV $APP_ENV
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY . .
