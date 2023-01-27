@@ -47,7 +47,6 @@ const Guide=()=>{
         height: fit-content;
         display: flex;
         flex-direction: column;
-        padding-left: 23%;
       }
       .slick-track {
         position: relative;
