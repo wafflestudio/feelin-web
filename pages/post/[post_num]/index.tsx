@@ -1,7 +1,5 @@
 import { useRouter } from "next/router";
 import styles from './post.module.css';
-import { ChangeEvent, FormEvent, useState } from "react";
-import Link from "next/link";
 import PlaylistItem from "./playlistItem";
 import Back from './images/back.svg';
 import Image from "next/image";
