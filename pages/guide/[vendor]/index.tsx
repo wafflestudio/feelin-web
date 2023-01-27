@@ -59,8 +59,8 @@ const Guide=()=>{
         display: flex;
         width: 100%;
         height: fit-content;
-        padding-left: 10%;
-        padding-right: 10%;
+        padding-left: 6%;
+        padding-right: 6%;
       }
       `
 
