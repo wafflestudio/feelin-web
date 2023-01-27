@@ -34,22 +34,44 @@ const Guide=()=>{
       .slick-prev:before {
         opaicty: 1;
         color: black;
-        left: 0;
       }
       .slick-next:before {
         opacity: 1;
         color: black;
       }`
 
+    const StyledSlider = styled(Slider)`
+      height: fit-content;
+      .slick-list {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        padding-left: 23%;
+      }
+      .slick-track {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 100%;
+      }
+      .slick-slide {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 100%;
+      }
+      `
 
     return(
       <Wrap className={styles.wrapper}>
-        <Slider {...settings} className={styles.slider}>
+        <StyledSlider {...settings} className={styles.slider}>
           {vendor==='applemusic' ? 
           applemusicGuideImages.map((image) => {
             return <Image
               src={image}
-              alt='applemusicGuideImage'/>
+              alt='applemusicGuideImage'
+              />
           })
           : vendor==='spotify' ?
           spotifyGuideImages.map((image) => {
@@ -62,7 +84,7 @@ const Guide=()=>{
             No Guide for this streaming service
           </div>
           }
-        </Slider>
+        </StyledSlider>
       </Wrap>
     )
 }
