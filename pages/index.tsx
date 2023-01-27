@@ -336,7 +336,7 @@ const Home : NextPage<Props> = ({ userAgent,header } : Props) => {
 
 
   const appleMusicUserToken = () => {
-    router.push('./search/applemusic');
+    router.push('./apple-music-login.html');
   }
   const appleMusicGuide = () => {
     router.push('./guide/applemusic');
