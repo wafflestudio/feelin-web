@@ -21,7 +21,7 @@ const Guide=()=>{
     
 
     const ApplemusicGuideText : any[] = 
-      [<p className={styles.text}><span className={styles.red}>Press the menu button</span>(...) on the top right corner</p>,
+      [<p className={styles.text}><span className={styles.red}>Press the menu button</span>(...) on the top right</p>,
        <p className={styles.text}>Select <span className={styles.red}>Share Playlist...</span> from the menu</p>,
        <p className={styles.text}>Select <span className={styles.red}>Copy</span> and you’re done!</p>]
     const applemusicGuideImages : any[][] = [[ApplemusicGuideImage1, ApplemusicGuideText[0]], [ApplemusicGuideImage2, ApplemusicGuideText[1]], [ApplemusicGuideImage3, ApplemusicGuideText[2]]];
