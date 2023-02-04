@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="height=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="apple-music-app-name" content="My Cool Web App">
     <meta name="apple-music-app-build" content="1978.4.1">
@@ -41,8 +41,10 @@
         }
       };
     </script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
   </head>
   <body>
+    
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <section id="root">
       <div class="loading-container">
@@ -53,24 +55,26 @@
       <button id="apple-music-unauthorize">Unauthorize applemusic</button>
       <style>
         section{
-          margin-top: 300px;
+          margin-top: 200px;
           display: flex;
           justify-content: center;
           align-items: center;
           flex-direction: column;
         }
         button{
-          background-color: #424242;
-          color: white;
+          background-color: transparent;
+          color: #EC151A;
+          font-weight: 600;
           font-size: 12px;
           border: 1px solid #EC151A;
           padding: 10px;
           margin-top: 15px;
           border-radius: 5px;
-          font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+          font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
         }
         button:hover{
-          background-color: #333333;
+          background-color: #f69390;
+          color: white;
           cursor: pointer;
         }
 
@@ -80,7 +84,7 @@
         #link, #link:hover {-webkit-transition: color 0.5s ease-out;-moz-transition: color 0.5s ease-out;-ms-transition: color 0.5s ease-out;-o-transition: color 0.5s ease-out;transition: color 0.5s ease-out;}
 
         /** BEGIN CSS **/
-        body {background: #333333;}
+        body {background: white;}
         @keyframes rotate-loading {
             0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
             100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
@@ -161,7 +165,7 @@
 
         .loading {
             border: 2px solid transparent;
-            border-color: transparent #fff transparent #FFF;
+            border-color: transparent #424242 transparent #424242;
             -moz-animation: rotate-loading 1.5s linear 0s infinite normal;
             -moz-transform-origin: 50% 50%;
             -o-animation: rotate-loading 1.5s linear 0s infinite normal;
@@ -189,7 +193,7 @@
             -o-animation: loading-text-opacity 2s linear 0s infinite normal;
             -webkit-animation: loading-text-opacity 2s linear 0s infinite normal;
             animation: loading-text-opacity 2s linear 0s infinite normal;
-            color: #ffffff;
+            color: #424242;
             font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   
             font-size: 10px;
