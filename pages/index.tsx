@@ -336,7 +336,7 @@ const Home : NextPage<Props> = ({ userAgent,header } : Props) => {
 
 
   const appleMusicUserToken = () => {
-    router.push('./apple-music-login.html');
+    router.push('./apple-music-login.html?id={id}&token=eyJhbGciOiJFUzI1NiIsImtpZCI6IjQ3QzZESEc5R1AiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJLOTg4M1lCNFZSIiwiZXhwIjoxNjgxMzkyMTAxLCJpYXQiOjE2NzM2MTYxMDF9.KWgXFRF0iAG_Gqpsd-k9YOIPUFew-ydOL3BLGjsUEItlUYD25ZREk5JLtY3F3IQZWgGcTPJda-mpZB5pfnxbmw');
   }
   const appleMusicGuide = () => {
     router.push('./guide/applemusic');
