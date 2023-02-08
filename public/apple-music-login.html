@@ -4,24 +4,47 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="apple-music-developer-token" content="eyJhbGciOiJFUzI1NiIsImtpZCI6IjQ3QzZESEc5R1AiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJLOTg4M1lCNFZSIiwiZXhwIjoxNjgxMzkyMTAxLCJpYXQiOjE2NzM2MTYxMDF9.KWgXFRF0iAG_Gqpsd-k9YOIPUFew-ydOL3BLGjsUEItlUYD25ZREk5JLtY3F3IQZWgGcTPJda-mpZB5pfnxbmw">
     <meta name="apple-music-app-name" content="My Cool Web App">
     <meta name="apple-music-app-build" content="1978.4.1">
     <title>React App</title>
+    <script>
+      var link = document.createElement('meta');
+      link.setAttribute('name', 'apple-music-developer-token');
+      link.content = Object.fromEntries((new URLSearchParams(window.location.search)).entries()).token; //'eyJhbGciOiJFUzI1NiIsImtpZCI6IjQ3QzZESEc5R1AiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJLOTg4M1lCNFZSIiwiZXhwIjoxNjgxMzkyMTAxLCJpYXQiOjE2NzM2MTYxMDF9.KWgXFRF0iAG_Gqpsd-k9YOIPUFew-ydOL3BLGjsUEItlUYD25ZREk5JLtY3F3IQZWgGcTPJda-mpZB5pfnxbmw';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
     <script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
     <script type='text/javascript'>
       function postMusickitInstance() {
-          let music = MusicKit.getInstance();
-          music.authorize().then(function(result) {
-            flutterChannel.postMessage(result);
-          })
+        let music = MusicKit.getInstance(); 
+        localStorage.setItem("music", "opened");
+        console.log(localStorage.getItem("music"));
+        music.authorize()
+        .then(function(result) {
+          flutterChannel.postMessage(result);
+          localStorage.removeItem("music");
+        })
+        .catch(function(error) {
+          flutterChannel.postMessage(error);
+        })
+      }
+      window.onload = function() {
+        if(localStorage.getItem("music")==="opened"){
+          console.log("waiting..")
+          setTimeout(function(){
+            localStorage.removeItem("music");
+            postMusickitInstance();
+          }, 500);
         }
-        window.onload = function() {
+        else{
           postMusickitInstance();
-        };
-      </script>
+        }
+      };
+    </script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
   </head>
   <body>
+    
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <section id="root">
       <div class="loading-container">
@@ -32,34 +55,36 @@
       <button id="apple-music-unauthorize">Unauthorize applemusic</button>
       <style>
         section{
-          margin-top: 300px;
+          margin-top: 200px;
           display: flex;
           justify-content: center;
           align-items: center;
           flex-direction: column;
         }
         button{
-          background-color: #424242;
-          color: white;
+          background-color: transparent;
+          color: #EC151A;
+          font-weight: 600;
           font-size: 12px;
           border: 1px solid #EC151A;
           padding: 10px;
           margin-top: 15px;
           border-radius: 5px;
-          font-family: Arial, Helvetica, sans-serif;
+          font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
         }
         button:hover{
-          background-color: #333333;
+          background-color: #f69390;
+          color: white;
           cursor: pointer;
         }
 
-        #link {color: #EC151A;display:block;font: 18px "Helvetica Neue", Helvetica, Arial, sans-serif;text-align:center; text-decoration: none; margin-bottom: 15px}
+        #link {color: #EC151A;display:block;font: 18px "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;text-align:center; text-decoration: none; margin-bottom: 15px}
         #link:hover {color: #CCCCCC}
 
         #link, #link:hover {-webkit-transition: color 0.5s ease-out;-moz-transition: color 0.5s ease-out;-ms-transition: color 0.5s ease-out;-o-transition: color 0.5s ease-out;transition: color 0.5s ease-out;}
 
         /** BEGIN CSS **/
-        body {background: #333333;}
+        body {background: white;}
         @keyframes rotate-loading {
             0%  {transform: rotate(0deg);-ms-transform: rotate(0deg); -webkit-transform: rotate(0deg); -o-transform: rotate(0deg); -moz-transform: rotate(0deg);}
             100% {transform: rotate(360deg);-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); -o-transform: rotate(360deg); -moz-transform: rotate(360deg);}
@@ -140,7 +165,7 @@
 
         .loading {
             border: 2px solid transparent;
-            border-color: transparent #fff transparent #FFF;
+            border-color: transparent #424242 transparent #424242;
             -moz-animation: rotate-loading 1.5s linear 0s infinite normal;
             -moz-transform-origin: 50% 50%;
             -o-animation: rotate-loading 1.5s linear 0s infinite normal;
@@ -168,8 +193,9 @@
             -o-animation: loading-text-opacity 2s linear 0s infinite normal;
             -webkit-animation: loading-text-opacity 2s linear 0s infinite normal;
             animation: loading-text-opacity 2s linear 0s infinite normal;
-            color: #ffffff;
-            font-family: "Helvetica Neue, "Helvetica", ""arial";
+            color: #424242;
+            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  
             font-size: 10px;
             font-weight: bold;
             margin-top: 40px;

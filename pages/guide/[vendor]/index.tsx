@@ -18,9 +18,19 @@ import SpotifyGuideImage3 from '../guideImages/spotify/spotify-3.png';
 const Guide=()=>{
     const router = useRouter();
     const { vendor } = router.query;
+    
 
-    const applemusicGuideImages : any[] = [ApplemusicGuideImage1, ApplemusicGuideImage2, ApplemusicGuideImage3];
-    const spotifyGuideImages : any[] = [SpotifyGuideImage1, SpotifyGuideImage2, SpotifyGuideImage3];
+    const ApplemusicGuideText : any[] = 
+      [<p className={styles.text}><span className={styles.red}>Press the menu button</span>(...) on the top right</p>,
+       <p className={styles.text}>Select <span className={styles.red}>Share Playlist...</span> from the menu</p>,
+       <p className={styles.text}>Select <span className={styles.red}>Copy</span> and you’re done!</p>]
+    const applemusicGuideImages : any[][] = [[ApplemusicGuideImage1, ApplemusicGuideText[0]], [ApplemusicGuideImage2, ApplemusicGuideText[1]], [ApplemusicGuideImage3, ApplemusicGuideText[2]]];
+    
+    const SpotifyGuideText : any[] = 
+      [<p className={styles.text}><span className={styles.red}>Press the menu button</span>(...) on the left</p>,
+       <p className={styles.text}>Select <span className={styles.red}>Share</span> from the menu</p>,
+       <p className={styles.text}>Select <span className={styles.red}>Copy link</span> and you’re done!</p>]
+    const spotifyGuideImages : any[][] = [[SpotifyGuideImage1, SpotifyGuideText[0]], [SpotifyGuideImage2, SpotifyGuideText[1]], [SpotifyGuideImage3, SpotifyGuideText[2]]];
 
     const settings = {
       dots: true,
@@ -29,6 +39,7 @@ const Guide=()=>{
       slidesToShow: 1,
       slidesToScroll: 1
     };
+
 
     const Wrap = styled.div`
       .slick-prev:before {
@@ -43,7 +54,7 @@ const Guide=()=>{
     const StyledSlider = styled(Slider)`
       height: fit-content;
       .slick-list {
-        width: 600px;
+        width: 100%;
         height: fit-content;
         display: flex;
         flex-direction: column;
@@ -52,13 +63,14 @@ const Guide=()=>{
         position: relative;
         display: flex;
         width: 100%;
-        height: 100%;
+        height: fit-content;
       }
       .slick-slide {
         position: relative;
         display: flex;
         width: 100%;
         height: 100%;
+        padding: 4% 4% 0% 4%;
       }
       `
 
@@ -67,16 +79,28 @@ const Guide=()=>{
         <StyledSlider {...settings} className={styles.slider}>
           {vendor==='applemusic' ? 
           applemusicGuideImages.map((image) => {
-            return <Image
-              src={image}
-              alt='applemusicGuideImage'
-              />
+            return <div className={styles.ImageWrapper}>
+              <div className={styles.guideImage}>
+                <Image
+                src={image[0]}
+                alt='applemusicGuideImage'
+                />
+              </div>
+              {image[1]}
+            </div>
           })
           : vendor==='spotify' ?
           spotifyGuideImages.map((image) => {
-            return <Image
-            src={image}
-            alt='spotifyGuideImage'/>
+            return <div className={styles.ImageWrapper}>
+              <div className={styles.guideImage}>
+                <Image
+                  src={image[0]}
+                  alt='spotifyGuideImage'
+                  className={styles.guideImage}
+                />
+              </div>
+              {image[1]}
+            </div>
           })
           :
           <div>
